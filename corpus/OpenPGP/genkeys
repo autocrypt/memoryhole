@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+# 2015-07-15
+
+# How to generate the keys used for the creation of the message
+# corpus.
+
+export WORKDIR=$(mktemp -d)
+export GNUPGHOME="$WORKDIR"
+
+cat >"${WORKDIR}/gpg-agent.conf"<<EOF
+allow-loopback-pinentry
+no-allow-external-cache
+EOF
+cleanup() {
+    gpgconf --kill gpg-agent
+    rm -rf "$WORKDIR"
+}
+
+trap cleanup EXIT
+
+gpg2 --batch --pinentry-mode=loopback --passphrase=_winston_ --quick-gen-key 'Winston <winston@example.net>'
+gpg2 --batch --pinentry-mode=loopback --passphrase=_julia_ --quick-gen-key 'Julia <julia@example.org>'
+gpg2 --batch --pinentry-mode=loopback --passphrase=_obrian_ --quick-gen-key "O'Brian <obrian@example.com>"
+
+for x in winston julia obrian; do
+    gpg2 --armor --batch --pinentry-mode=loopback --passphrase=_${x}_ --output $x.key --export-secret-key $x
+    gpg2 --armor --batch --output $x.pgp --export $x
+done
+
