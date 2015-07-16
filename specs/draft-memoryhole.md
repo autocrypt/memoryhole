@@ -55,17 +55,23 @@ Terminology
 ===========
 
 header line
-: a single header field, like "Subject: 
+: a single header field, like "Subject: encrypting mail headers"
 
 header block
 : a collection of header lines associated with an e-mail message
 
-embedded header
+embedded header block
 : the text/rfc822-header MIME subpart located as the first immediate
   child of an encrypted or signed e-mail message
 
-external header
-: the block of headers located outside the body of an e-mail message
+embedded header line
+: a header line within an embedded header block
+
+external header block
+: the set of header lines located outside the body of an e-mail message
+
+external header line
+: a header line within an external header block
 
 Message Structure
 =================
