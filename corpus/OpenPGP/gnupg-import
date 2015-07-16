@@ -1,0 +1,16 @@
+#!/bin/bash
+
+mkdir -p -m 0700 GNUPGHOME
+export GNUPGHOME=$(pwd)/GNUPGHOME
+
+cat >GNUPGHOME/gpg-agent.conf <<EOF
+allow-loopback-pinentry
+no-allow-external-cache
+EOF
+
+for x in winston obrian julia; do
+    <$x.key gpg2 --batch --pinentry-mode=loopback --passphrase=_${x}_ --import
+done
+
+
+    
