@@ -17,6 +17,8 @@ m.add_header('Message-ID', 'A@memoryhole.example')
 m.add_header('To', 'Julia <julia@example.org>')
 m.add_header('From', 'Winston <winston@example.net>')
 m.set_type('multipart/signed')
+m.set_param('micalg', 'pgp-sha256')
+m.set_param('protocol', 'application/pgp-signature')
 m.set_boundary('xxxxxxxxxxxx')
 
 txt = '''This is a test
@@ -72,8 +74,11 @@ g = subprocess.Popen(['gpg2', '--batch',
                       '--pinentry-mode=loopback',
                       '--passphrase=_winston_',
                       '--armor', '--detach-sign',
+                      '--digest-algo=sha256',
                       '-u', 'winston@example.net'],
-                     stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+                     stdin=subprocess.PIPE,
+                     stdout=subprocess.PIPE,
+                     stderr=subprocess.PIPE)
 
 (sout, serr) = g.communicate(s.as_bytes())
 sig.set_payload(sout)
