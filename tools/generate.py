@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 
+# generate a PGP/MIME-signed multipart/alternative mail to stdout.
+
+# Depends on the user having run ../corpus/OpenPGP/gnupg-import to
+# create the GNUPGHOME directory there.
+
 import email.message
 import sys
+import subprocess
 
 m = email.message.Message()
 
@@ -45,10 +51,6 @@ s = email.message.Message()
 s.set_type('multipart/alternative')
 s.set_boundary('yyyyyyyyyyyyy')
 
-sig = email.message.Message()
-sig.set_type('application/pgp-signature')
-sig.set_payload(signature)
-
 
 
 t = email.message.Message()
@@ -60,6 +62,23 @@ h.set_type('text/html')
 h.set_payload(html)
 
 s.set_payload([t,h])
+
+
+sig = email.message.Message()
+sig.set_type('application/pgp-signature')
+
+g = subprocess.Popen(['gpg2', '--batch',
+                      '--homedir=../corpus/OpenPGP/GNUPGHOME',
+                      '--pinentry-mode=loopback',
+                      '--passphrase=_winston_',
+                      '--armor', '--detach-sign',
+                      '-u', 'winston@example.net'],
+                     stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+
+(sout, serr) = g.communicate(s.as_bytes())
+sig.set_payload(sout)
+if serr is not None:
+    sys.stderr.buffer.write(serr)
 
 m.set_payload([s,sig])
 
