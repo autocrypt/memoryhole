@@ -10,10 +10,9 @@ corpus here.
 Even if you don't handle these messages completely, having screenshots
 that show how they display in your MUA will help other implementors.
 
-Recommended structure for an MUA named foo:
+Recommended structure for an MUA named foo---for each version V:
 
-foo/version.txt -- should contain the version that is documented here
-foo/A.png -- graphical screenshot of MUA rendering message A 
-foo/A.txt -- (for text-mode clients) text dump of MUA rendering message A
+foo/V/A.png -- graphical screenshot of MUA rendering message A 
+foo/V/A.txt -- (for text-mode clients) text dump of MUA rendering message A
  [...]
-foo/README.md -- any additional information 
+foo/V/README.md -- any additional information 
