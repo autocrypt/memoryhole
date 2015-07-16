@@ -1,0 +1,29 @@
+Winston <winston@example.net> (Today 11:44) (inbox signed unread)                                   
+Subject: A silly message
+To: Julia <julia@example.org>                                                                       
+Date: Thu, 16 Jul 2015 11:44:44 +0200                                                               
+                                                                                                    
+[ multipart/signed ]                                                                                
+[ Good signature by key: 0x5A7AD43844FB30BE7DB1B3FD15FB4EBC8E2D6CB7 ]                               
+ [ multipart/mixed ]                                                                                
+  [ text/rfc822-header ]                                                                            
+  Date: Thu, 16 Jul 2015 11:44:44 +0200                                                             
+  Subject: A silly message                                                                          
+  From: Winston <winston@example.net>                                                               
+  To: Julia <julia@example.org>                                                                     
+  Message-ID: A@memoryhole.example                                                                  
+  [ multipart/alternative ]                                                                         
+   [ text/plain ]                                                                                   
+   This is a test                                                                                   
+   message on multiple lines                                                                        
+                                                                                                    
+   with a silly bit more.                                                                           
+   [ 2-line signature. Click/Enter to show. ]                                                       
+   [ text/html (hidden) ]                                                                           
+ [ application/pgp-signature ]                                                                      
+
+
+
+
+-UUU:%*--F1  *A silly message*   All L1     (notmuch-show Wrap) 4:15PM 0.31 Mail -------------------
+
