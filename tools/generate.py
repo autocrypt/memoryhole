@@ -51,7 +51,7 @@ XXXXXX
 
 embedded_header = ''
 for x in ['Date', 'Subject', 'From', 'To', 'Message-ID']:
-    embedded_header += x + ': ' + m.get(x)
+    embedded_header += x + ': ' + m.get(x) + '\n'
 
 wrapper = email.message.Message()
 wrapper.set_type('multipart/mixed')

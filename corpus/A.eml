@@ -9,14 +9,19 @@ Content-Type: multipart/signed; micalg="pgp-sha256";
 
 --xxxxxxxxxxxx
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0761275195712312428=="
+Content-Type: multipart/mixed; boundary="===============7082483924055523074=="
 
---===============0761275195712312428==
+--===============7082483924055523074==
 MIME-Version: 1.0
 Content-Type: text/rfc822-header
 
-Date: Thu, 16 Jul 2015 11:44:44 +0200Subject: A silly messageFrom: Winston <winston@example.net>To: Julia <julia@example.org>Message-ID: A@memoryhole.example
---===============0761275195712312428==
+Date: Thu, 16 Jul 2015 11:44:44 +0200
+Subject: A silly message
+From: Winston <winston@example.net>
+To: Julia <julia@example.org>
+Message-ID: A@memoryhole.example
+
+--===============7082483924055523074==
 MIME-Version: 1.0
 Content-Type: multipart/alternative; boundary="yyyyyyyyyyyyy"
 
@@ -49,7 +54,7 @@ Content-Type: text/html
 
 --yyyyyyyyyyyyy--
 
---===============0761275195712312428==--
+--===============7082483924055523074==--
 
 --xxxxxxxxxxxx
 MIME-Version: 1.0
@@ -58,13 +63,13 @@ Content-Type: application/pgp-signature
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQEcBAABCAAGBQJVp7m2AAoJEBX7TryOLWy3V34H/0qFM+oAMCeqSyZ2Go/XIWIC
-gEB6CSDfE/k9DbMa+6+uwug32S1EV5K9nKwgCeWeicwJKDdSi82Z/BATFoHGbOY+
-cW4r4GTaZzei4tbdS8wS1iR9RPfKKdoauXpkxu//1OSWN2KtA2fH9xtTXzM2CIai
-S0ovnkzuTf/TkMi4obgh00TOfjF0xWWvLl/OUqNGwCglhUOxG+0OOwhF3oqs4N7r
-ubJGvQ7QLZrP3lglxSJXZziGoyzHC2UgWVNst/dQTpiXsy8HJpppNk/Ld15whrYu
-ZgMr5AABizqnzO9CqT+q2mxOi8Mt/gGQKNcmOHeo2+irnWgH1RI9oVHSCIyAlTY=
-=Rnp8
+iQEcBAABCAAGBQJVp7wtAAoJEBX7TryOLWy3wDUH/RJN3TNxM8bb6ZvKhimJ/s/U
+9AJdiSsiFxKAuvxiSlhf4yNPXhsxsovPJOib7t4uYXrKNlu7+2/MC+V0Cb+NRq+6
+BZV8TdJSvNNvxzwah7nOQoykbki9Auk8/trm2N27R7Fy3HmQhrGIUzXw6EwwORDK
+S1jESM01bcMUzV0AEHC7nwKTshWLm8O7h0GN8Q41colmMDR4T0/VHwuatPipsmex
++guSUoFUwSyYDXcyG7gmKjG/NE+V2YEU9bC9mFvITHp10K5QyBjCVjnmIWjyyteQ
+cjQNpDh4+qKWjfhPGNaxBYvU4IxhJBlcfTiWFOzfo8OwqMu2nZPAztywB7nOVoc=
+=GR/M
 -----END PGP SIGNATURE-----
 
 --xxxxxxxxxxxx--
