@@ -55,9 +55,11 @@ for x in ['Date', 'Subject', 'From', 'To', 'Message-ID']:
 
 wrapper = email.message.Message()
 wrapper.set_type('multipart/mixed')
+wrapper.set_boundary('zzzzzzzzzzzz')
 
 emh = email.message.Message()
 emh.set_type('text/rfc822-header')
+emh.add_header('Content-Disposition', 'attachment')
 emh.set_payload(embedded_header)
 
 s = email.message.Message()
