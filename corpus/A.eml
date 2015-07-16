@@ -1,0 +1,70 @@
+Subject: A silly message
+Date: Thu, 16 Jul 2015 11:44:44 +0200
+Message-ID: A@memoryhole.example
+To: Julia <julia@example.org>
+From: Winston <winston@example.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg="pgp-sha256";
+ protocol="application/pgp-signature"; boundary="xxxxxxxxxxxx"
+
+--xxxxxxxxxxxx
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============0761275195712312428=="
+
+--===============0761275195712312428==
+MIME-Version: 1.0
+Content-Type: text/rfc822-header
+
+Date: Thu, 16 Jul 2015 11:44:44 +0200Subject: A silly messageFrom: Winston <winston@example.net>To: Julia <julia@example.org>Message-ID: A@memoryhole.example
+--===============0761275195712312428==
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="yyyyyyyyyyyyy"
+
+--yyyyyyyyyyyyy
+MIME-Version: 1.0
+Content-Type: text/plain
+
+This is a test
+message on multiple lines
+
+with a silly bit more.
+-- 
+and a .sig here.
+
+--yyyyyyyyyyyyy
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+<head>
+<title>titles are usually unrendered</title>
+</head>
+<body>
+<p>This is a test<br/>message on multiple lines</p>
+<p>with a silly bit more.</p>
+<hr/>
+<p>and a .sig here.</p>
+</body>
+</html>
+
+--yyyyyyyyyyyyy--
+
+--===============0761275195712312428==--
+
+--xxxxxxxxxxxx
+MIME-Version: 1.0
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAABCAAGBQJVp7m2AAoJEBX7TryOLWy3V34H/0qFM+oAMCeqSyZ2Go/XIWIC
+gEB6CSDfE/k9DbMa+6+uwug32S1EV5K9nKwgCeWeicwJKDdSi82Z/BATFoHGbOY+
+cW4r4GTaZzei4tbdS8wS1iR9RPfKKdoauXpkxu//1OSWN2KtA2fH9xtTXzM2CIai
+S0ovnkzuTf/TkMi4obgh00TOfjF0xWWvLl/OUqNGwCglhUOxG+0OOwhF3oqs4N7r
+ubJGvQ7QLZrP3lglxSJXZziGoyzHC2UgWVNst/dQTpiXsy8HJpppNk/Ld15whrYu
+ZgMr5AABizqnzO9CqT+q2mxOi8Mt/gGQKNcmOHeo2+irnWgH1RI9oVHSCIyAlTY=
+=Rnp8
+-----END PGP SIGNATURE-----
+
+--xxxxxxxxxxxx--
