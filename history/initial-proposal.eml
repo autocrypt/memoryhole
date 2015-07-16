@@ -1,0 +1,377 @@
+Return-Path: <gnupg-devel-bounces@gnupg.org>
+Received: from kerckhoffs.g10code.com ([217.69.77.222])
+ by lists.gnupg.org with esmtp (Exim 4.80 #2 (Debian))
+ id 1YCDU3-0005tz-MF
+ for <mm.gnupg-devel@lists.gnupg.org>; Fri, 16 Jan 2015 21:27:07 +0100
+Received: from che.mayfirst.org ([209.234.253.108])
+ by kerckhoffs.g10code.com with esmtp (Exim 4.80 #2 (Debian))
+ id 1YCDWI-0006fu-Cd
+ for <gnupg-devel@gnupg.org>; Fri, 16 Jan 2015 21:29:26 +0100
+Received: from fifthhorseman.net (unknown [38.109.115.130])
+ by che.mayfirst.org (Postfix) with ESMTPSA id 803FBF984;
+ Fri, 16 Jan 2015 15:29:21 -0500 (EST)
+Received: by fifthhorseman.net (Postfix, from userid 1000)
+ id 54CEC20028; Fri, 16 Jan 2015 15:29:17 -0500 (EST)
+From: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+To: Hanno =?utf-8?Q?B=C3=B6ck?= <hanno@hboeck.de>, gnupg-devel@gnupg.org
+Subject: Re: Encrypting / Signing the mail subject?
+In-Reply-To: <20150116134324.6d918b4e@pc>
+References: <20150116134324.6d918b4e@pc>
+User-Agent: Notmuch/0.18.2 (http://notmuchmail.org) Emacs/24.4.1
+ (x86_64-pc-linux-gnu)
+Date: Fri, 16 Jan 2015 15:29:13 -0500
+Message-ID: <87mw5ixyee.fsf@alice.fifthhorseman.net>
+MIME-Version: 1.0
+X-BeenThere: gnupg-devel@gnupg.org
+X-Mailman-Version: 2.1.15
+Precedence: list
+List-Id: GnuPG development <gnupg-devel.gnupg.org>
+List-Unsubscribe: <http://lists.gnupg.org/mailman/options/gnupg-devel>,
+ <mailto:gnupg-devel-request@gnupg.org?subject=unsubscribe>
+List-Archive: </pipermail/>
+List-Post: <mailto:gnupg-devel@gnupg.org>
+List-Help: <mailto:gnupg-devel-request@gnupg.org?subject=help>
+List-Subscribe: <http://lists.gnupg.org/mailman/listinfo/gnupg-devel>,
+ <mailto:gnupg-devel-request@gnupg.org?subject=subscribe>
+Content-Type: multipart/mixed; boundary="===============1798281264=="
+Errors-To: gnupg-devel-bounces@gnupg.org
+Sender: "Gnupg-devel" <gnupg-devel-bounces@gnupg.org>
+X-getmail-retrieved-from-mailbox: INBOX
+
+--===============1798281264==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha512; protocol="application/pgp-signature"
+
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
+
+--=-=-=
+Content-Type: text/rfc822-headers; charset=utf-8
+Content-Disposition: inline; filename=header
+Content-Transfer-Encoding: quoted-printable
+Content-Description: signed headers for this message
+
+Subject: Re: Encrypting / Signing the mail subject?
+From: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+To: Hanno B=C3=B6ck <hanno@hboeck.de>, gnupg-devel@gnupg.org
+In-Reply-To: <20150116134324.6d918b4e@pc>
+
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Hanno--
+
+On Fri 2015-01-16 07:43:24 -0500, Hanno B=C3=B6ck wrote:
+
+> I wanted to share some thoghts about a potential change to the PGP mail
+> format I had. I'm not sure if this is the right place to discuss this,
+> but afaik there is currently no active openpgp standards list at IETF
+> and gnupg is likely the only implementation in widespread use. I recall
+> that I have read something alike already somewhere sometime, however I
+> don't exactly remember in what context.
+
+despite the fact that the IETF's OpenPGP WG is closed, i think that
+openpgp@ietf.org mailing list is still active.  It may be worth
+discussing issues like this in that forum as well, to get a wider range
+of buy-in.
+
+> One of the things I find unfortunate about OpenPGP encryption is that
+> the subject of a mail is not encrypted and signed. This is imho very
+> bad from a usability point of view and also not really neccessary,
+> because there are ways this could work without changing too much about
+> the way pgp mails work.
+
+I agree that this is a problem; however, i'm not sure GnuPG is the place
+to solve it, since this is more a question about how to package e-mails,
+and GnuPG has traditionally been rather hands-off about e-mail message
+handling in particular for OpenPGP (for s/mime there has been a bit more
+work within gpgsm proper).
+
+I don't know if there's a good place for that kind of general
+discussion, though.
+
+> What I have in mind is something like this: Whenever a PGP mail app
+> creates a mail it replaces the subject with a defined keyword. This
+> could be something trivial like "__ENCRYPTED_SUBJECT__". It then places
+> a Subject line inside the encrypted mail body. This is followed by two
+> newlines and then the real encrypted body of the mail follows.
+>
+> A mail client supporting this format would then replace the
+> __ENCRYPTED_SUBJECT__ in the UI with the Subject from the body and it
+> would hide the Subject: ... and the two newlines from the UI display of
+> the mail body.
+>
+> Doing this would provide some kind of backwards compatibility to old
+> clients. A client not supporting this mechanism would still be able to
+> read a mail. It would also show the subject as part of the encrypted
+> mail body. There would even be some compatibility in the other way. A
+> user aware of how this works could manually set the subject keyword and
+> the Subject in the mail body in a mail client not supporting this
+> mechanism.
+>
+>
+> There are some things that'd need consideration if such a mechanism
+> would be created:
+> * This would move the subject to the encrypted part of a message. A
+> mail client may decide that it needs some kind of caching of mail
+> subjects available, because it is not feasible to decrypt them on
+> demand, especially on large mailboxes. Therefore a client might move
+> data from the encrypted context to a nonencrypted storage. This is a
+> trade-off, but imho it is still a lot better than not encrypting the
+> subject at all.
+> * One would have to make a clear decision how the Subject is encoded to
+> avoid confusion and incompatibilities. Currently a subject with special
+> chars has some kind of utf8-prefix-encoding. A mail body has its own
+> encoding. One would have to decide if the subject encoding is just the
+> body encoding or if the same format as in the header is used. Technical
+> detail, but should be done right and should be unambigious.
+
+We'd also need to think about what happens if the mail is only
+Content-Type: text/html (or worse: something even further removed from
+text/plain) and how to handle line-wrapping, etc. :/  Yuck!
+
+And if a message is wrapped in PGP/MIME (as it probably should be,
+esp. if we're trying to infer something about content-type and character
+encoding issues), and there are multiple MIME parts, which part should
+we be looking in for this info?
+
+I understand the appeal of your proposal in terms of simplicity and
+end-user visibility, but i think specifying a whole new range of
+logistics around handling this stuff sounds like a lot of nasty work and
+room for errors in implementation.
+
+Embedded Header Proposal
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Here's a counter-proposal to consider, which relies on PGP/MIME.
+PGP/MIME messages are the only reliably structured mail OpenPGP e-mail
+messages anyway [0].
+
+A normal PGP/MIME signed text/plain message structure looks like this
+(Content-Type of each part is shown) [1]:
+
+A =E2=94=94=E2=94=AC=E2=95=B4multipart/signed
+B  =E2=94=9C=E2=94=80=E2=95=B4text/plain=20
+C  =E2=94=94=E2=94=80=E2=95=B4application/pgp-signature [signature.asc]
+
+I propose sending a message with an additional text/rfc822-headers [2] part
+injected as a sub-part in the message, like this:
+
+D =E2=94=94=E2=94=AC=E2=95=B4multipart/signed
+E  =E2=94=9C=E2=94=AC=E2=95=B4multipart/mixed
+F  =E2=94=82=E2=94=9C=E2=94=80=E2=95=B4text/rfc822-headers inline [header]=
+=20
+G  =E2=94=82=E2=94=94=E2=94=80=E2=95=B4text/plain
+H  =E2=94=94=E2=94=80=E2=95=B4application/pgp-signature [signature.asc]
+
+the text/rfc822-headers mime type is defined here:
+
+
+In this case, only select headers would be embedded (those headers that
+are to be signed/encrypted.  The embedded header part (F, above) should
+be Content-Disposition: inline, and should be subject to all the usual
+rules of parsing mail message headers.
+
+This allows senders to sign arbitrary headers (not just Subject:), and
+it works for both signing and encryption.
+
+For sending and receiving MUAs unaware of this convention, no changes
+need to be made; at worst, a receiving MUA can simply ignore the
+text/rfc822-headers MIME part.  But since it's of type text/* and
+Content-Disposition: inline, they may choose to just render it directly
+at the top of the message, which would look very similar to your
+proposal.
+
+This e-mail message contains a signed set of embedded headers in the way
+i've proposed.  How does it render in your unaware MUA?  feel free to
+send me a private report if you like.
+
+
+
+for aware MUAs, we'd need to spec out the detailed rules:
+
+Message handling guidelines for embedded-header-aware MUAs
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+composing (sending) MUAs (signed messages)
+=2D-----------------------------------------
+
+the composing MUA, when crafting a signed message, needs to know which
+header fields should be included.  By default, this might just be
+Subject:, though maybe it's worth including Date: as well.
+
+This could be represented in MUA configuration as a simple list of
+headers:
+
+signed_headers:
+ * Subject
+ * Date
+ * From
+ * To
+ * Cc
+
+composing (sending) MUAs (encrypted messages)
+=2D--------------------------------------------
+
+the composing MUA, when crafting an encrypted message, needs to know
+which header fields should be encrypted, and what the default
+replacement for that field should be.
+
+This could be represented in MUA configuration as a list of
+(header,value) pairs:
+
+Some headers may have a value marked as <omit>, to indicate that the
+header should not be exposed publicly at all, but should only be present
+in the embedded header.
+
+encrypted_headers:
+ * (Subject,"ENCRYPTED SUBJECT")
+ * (In-Reply-To,<omit>)
+ * (References,<omit>)
+
+Ideally, these lists would be shared across clients and would have sane
+defaults, since shared configuration increases ambiguity to an attacker.
+
+(note that the choices described above would hide threading information
+From=20an attacker)
+
+
+composing (sending) MUAs (encrypted+signed messages)
+=2D---------------------------------------------------
+
+some messages are both signed and encrypted.  an MUA which composes such
+a message should craft the embedded headers using the union of all
+headers in both signed_headers and encrypted_headers, sign and encrypt
+the message, and only then replace or omit the external header fields as
+directed by the encrypted_headers configuration.
+
+
+receiving MUAs (encrypted messages)
+=2D----------------------------------
+
+An MUA that receives an encrypted message with a text/rfc822-headers
+part should loop through the embedded headers.  for each embedded
+header, it should compare it with the external header of the same label.
+
+If they differ, the MUA should treat the message as though the embedded
+header is the correct value.
+
+receiving MUAs (signed messages)
+=2D-------------------------------
+
+An MUA that receives a signed message with a text/rfc822-headers part
+should loop through the embedded headers.  for each embedded header, it
+should compare it with the external header of the same label.
+
+If they differ, the MUA should treat the message as though the embedded
+header is the correct value.  The MUA may want to expose the unsigned
+value of that header to the user with a warning that it is unsigned.
+
+Whether they differ or not, the MUA should indicate to the user that the
+signed parts are signed, and should make a visible distinction between
+signed and unsigned headers.
+
+
+=2D------
+
+open questions
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+redundant header parts?
+=2D----------------------
+
+We'd also need to define what happens if more than one
+text/rfc822-headers part shows up in a multipart message -- most simply,
+we could say that we only process text/rfc822-headers if it happens to
+be the first non-multipart part within the multipart/signed or
+multipart/encrypted part.  This prevents the receiving MUA from
+applying text/rfc822-headers from a forwarded (attached)
+signed/encrypted message.
+
+
+disallowed headers?
+=2D------------------
+
+Are there any headers that *should not* be permitted to be rewritten in
+this way?  For example, what would it mean if someone were to embed a
+Received: header?  a Message-ID header?
+
+If some are unacceptable, should we have a blocklist (allow arbitrary
+headers by default, only reject certain ones) or an allowlist (block
+arbitrary headers by default, only accept certain ones like Subject and
+date)?
+
+
+redundant headers
+=2D----------------
+
+within a single header block, there could still be more than one
+instance of a given header.  The message itself could also have multiple
+copies of a given header (e.g. the Comments and Keywords fields [3]).
+If multiple copies of a given header appear in either the exposed header
+or the embedded header, and their values differ, how should we resolve
+the difference?
+
+=2D------
+
+
+
+
+What do you think?
+
+        --dkg
+
+[0] https://dkg.fifthhorseman.net/notes/inline-pgp-harmful/
+
+[1] MIME message structure representations shown here are generated from
+    actual messages via devel/printmimestructure from the notmuch git
+    repository at git://notmuchmail.org/git/notmuch
+
+[2] text/rfc822-headers:   https://tools.ietf.org/html/rfc6522#section-4
+
+[3] Comments and Keywords: https://tools.ietf.org/html/rfc5322#section-3.6.5
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQJ8BAEBCgBmBQJUuXSaXxSAAAAAAC4AKGlzc3Vlci1mcHJAbm90YXRpb25zLm9w
+ZW5wZ3AuZmlmdGhob3JzZW1hbi5uZXRFQjk2OTEyODdBN0FEREUzNzU3RDkxMUVB
+NTI0MDFCMTFCRkRGQTVDAAoJEKUkAbEb/fpcQCwQAJDlGxGHKsbgesXd/e3NOg9h
+0vXgMeilxJuZCVwOIa7kI7P8nt/2e0bEMllVUOLSTsB9OmSw520wB1iXxDFD7x9l
+Vqq+rwuHLn27CJJlSZRKDadfp2tXSfuO75HJKG3/Q1MQt94lX2ZsFwxdcqMG7dbR
+jGaigABQluGMXiBTrRKe6cR4dFSqXI0MuFM+Bvipfrp4SAo6OoYnaxg5SyhFCt9+
+gW4Jbyj+HPbR3Q7wwev6H/Ge0S5cOQG8gn0ubR80iFQN5cGvPWvXkADu6fJqE1+g
+e4UgB+VcvRriOfhqfuvEnQzEnGu2iD+VB30wEL6RWDgvnplmrXlTTGx9wXraWZVr
+18FdMKqxRr1mgP+le6YI24gVzsJ6dYhmPsXZQxuUxe4N2guwAgFHh1qqm8M7tqSK
+pzu5rfgAyAbidcauufTfUp3jAY6VON2oKGf1XRF7p3Z712BmUIxexHhJWeTSUf9u
+jtb0HihiIJ7HjpaHqAoYNRycl6j6xobX+qEPhmgOobERSquZi1A6YtCGTRG7uBXU
+5QXqAYBbOX6cfM92tn5pqmHT3pPujR2tyRk7gFf4UXr50wCmBUn/kLkZxS03Naq+
+j8dan7gKWxpV8Y6k++vAmxWpyJmI9JzMh+FsdCpo87GdZ0HhQqZFsaeWHnnnM5Yy
+eDj0RjrkNkocW88JUX9C
+=0eHY
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+
+--===============1798281264==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Gnupg-devel mailing list
+Gnupg-devel@gnupg.org
+http://lists.gnupg.org/mailman/listinfo/gnupg-devel
+
+--===============1798281264==--
+
