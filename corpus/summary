@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for desc in *.desc; do
+  printf "`echo $desc | cut -c-1 -`.eml  --  "
+  printf "%s\n" "`head -n 1 < $desc`"
+done
