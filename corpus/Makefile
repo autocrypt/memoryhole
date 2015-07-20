@@ -21,6 +21,7 @@ default: $(TARGETS)
 	@$< description  >  $@
 	@echo >> $@
 	@../tools/printmimestructure < $(patsubst %.desc,%.eml,$@) >> $@
+	@../tools/printmimestructure < $(patsubst %.desc,%.eml,$@)
 
 $(GNUPGHOME):
 	@cd $(dir $@) && ./gnupg-import
