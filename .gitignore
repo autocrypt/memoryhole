@@ -2,3 +2,4 @@
 corpus/*.eml
 corpus/*.desc
 generators/output
+inboxes

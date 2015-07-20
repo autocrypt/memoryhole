@@ -8,7 +8,11 @@ DESCS  = $(patsubst generators/%.py,corpus/%.desc,$(GENERATOR_SRC))
 
 GNUPGHOME=corpus/OpenPGP/GNUPGHOME
 
-TARGETS = $(EMAILS) $(DESCS)
+MAILDIR_MAILS = $(patsubst corpus/%.eml,\
+                           inboxes/maildir/cur/%.eml,\
+                           $(EMAILS))
+
+TARGETS = $(EMAILS) $(MAILDIR_MAILS) $(DESCS)
 
 default: $(TARGETS)
 
@@ -35,6 +39,13 @@ corpus/%.desc: generators/output/%.py $(GNUPGHOME) corpus/%.eml
 	  | tee --append $@
 	@$<  >  $@
 
+inboxes/maildir/cur/%.eml: corpus/%.eml maildir
+	@echo Copying $(notdir $<) to maildir
+	@cp $< $@
+
+maildir:
+	@mkdir -p inboxes/maildir/{cur,new,tmp}
+
 $(GNUPGHOME):
 	@echo Generating $@
 	@cd $(dir $@) && ./gnupg-import
@@ -44,4 +55,4 @@ clean:
 	-rm -rf $(GENERATOR_DST)
 	-rm -rf $(GNUPGHOME)
 
-.PHONY: default clean
+.PHONY: default clean maildir
