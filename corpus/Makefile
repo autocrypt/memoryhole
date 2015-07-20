@@ -1,7 +1,7 @@
-GENERATORS=$(wildcard ../generators/*.py)
+GENERATORS=$(wildcard ../generators/output/*.py)
 
-EMAILS=$(patsubst ../generators/%.py,./%.eml,$(GENERATORS))
-DESCRIPTIONS=$(patsubst ../generators/%.py,./%.desc,$(GENERATORS))
+EMAILS=$(patsubst ../generators/output/%.py,./%.eml,$(GENERATORS))
+DESCRIPTIONS=$(patsubst ../generators/output/%.py,./%.desc,$(GENERATORS))
 
 TARGETS=$(EMAILS) $(DESCRIPTIONS)
 
@@ -12,11 +12,11 @@ GNUPGHOME=OpenPGP/GNUPGHOME
 default: $(TARGETS)
 
 
-%.eml: ../generators/%.py $(GNUPGHOME)
+%.eml: ../generators/output/%.py $(GNUPGHOME)
 	@echo Generating $@
 	@$<  >  $@
 
-%.desc: ../generators/%.py  %.eml $(GNUPGHOME)
+%.desc: ../generators/output/%.py  %.eml $(GNUPGHOME)
 	@echo Structure for $@:
 	@$< description  >  $@
 	@echo >> $@

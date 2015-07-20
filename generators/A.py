@@ -4,19 +4,14 @@ description = (
 'alternative text/html message with embedded header, signed'
 )
 
-import email.message
-import sys
-import subprocess
+# ====== Do not change this line =====================================
+#
+# common/common.py gets put here. m is a message; Subject and
+# Message-ID are automatically generated, but you can customize all
+# other aspects of the message.
 
-if(len(sys.argv) == 2):
-    print(description)
-    exit(0)
 
-m = email.message.Message()
-
-m.add_header('Subject', 'A silly message')
 m.add_header('Date', 'Thu, 16 Jul 2015 11:44:44 +0200')
-m.add_header('Message-ID', 'A@memoryhole.example')
 m.add_header('To', 'Julia <julia@example.org>')
 m.add_header('From', 'Winston <winston@example.net>')
 m.set_type('multipart/signed')
