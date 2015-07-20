@@ -75,7 +75,7 @@ sig = email.message.Message()
 sig.set_type('application/pgp-signature')
 
 g = subprocess.Popen(['gpg2', '--batch',
-                      '--homedir=../corpus/OpenPGP/GNUPGHOME',
+                      '--homedir=corpus/OpenPGP/GNUPGHOME',
                       '--pinentry-mode=loopback',
                       '--passphrase=_winston_',
                       '--armor', '--detach-sign',
