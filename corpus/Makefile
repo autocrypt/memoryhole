@@ -17,11 +17,12 @@ default: $(TARGETS)
 	@$<  >  $@
 
 %.desc: ../generators/%.py  %.eml $(GNUPGHOME)
-	@echo Generating $@
+	@echo Structure for $@:
 	@$< description  >  $@
 	@echo >> $@
-	@../tools/printmimestructure < $(patsubst %.desc,%.eml,$@) >> $@
-	@../tools/printmimestructure < $(patsubst %.desc,%.eml,$@)
+	@../tools/printmimestructure < $(patsubst %.desc,%.eml,$@) \
+		| tee --append $@
+	@echo
 
 $(GNUPGHOME):
 	@cd $(dir $@) && ./gnupg-import
