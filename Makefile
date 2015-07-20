@@ -41,6 +41,7 @@ corpus/%.desc: generators/output/%.py $(GNUPGHOME) corpus/%.eml
 
 inboxes/maildir/cur/%.eml: corpus/%.eml maildir
 	@echo Copying $(notdir $<) to maildir
+	@mkdir -p inboxes/maildir/cur
 	@cp $< $@
 
 maildir:
