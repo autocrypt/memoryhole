@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 
-# generate a PGP/MIME-signed multipart/alternative mail to stdout.
-
-# Depends on the user having run ../corpus/OpenPGP/gnupg-import to
-# create the GNUPGHOME directory there.
+description = (
+'alternative text/html message with embedded header, signed'
+)
 
 import email.message
 import sys
 import subprocess
+
+if(len(sys.argv) == 2):
+    print(description)
+    exit(0)
 
 m = email.message.Message()
 
