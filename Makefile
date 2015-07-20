@@ -38,13 +38,10 @@ corpus/%.desc: generators/output/%.py $(GNUPGHOME) corpus/%.eml
 	@tools/printmimestructure < $(patsubst %.desc,%.eml,$@) \
 	  | tee --append $@
 
-inboxes/maildir/cur/%.eml: corpus/%.eml maildir
+inboxes/maildir/cur/%.eml: corpus/%.eml
 	@echo Copying $(notdir $<) to maildir
-	@mkdir -p inboxes/maildir/cur
-	@cp $< $@
-
-maildir:
 	@mkdir -p inboxes/maildir/{cur,new,tmp}
+	@cp $< $@
 
 $(GNUPGHOME):
 	@echo Generating $@
