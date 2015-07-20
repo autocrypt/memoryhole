@@ -17,12 +17,10 @@ generators/output/%.py: generators/%.py generators/common/common.py
 	@echo Adding common code to generator $(notdir $@)
 	@mkdir -p $(dir $@)
 	@head -n `grep -ne '# ====== Do not change this line' $< \
-                | awk -F : '{print $$1}'` \
-                        $<      >  $@
+	  | awk -F : '{print $$1}'`  $< > $@
 	@cat generators/common/common.py >> $@
 	@tail -n +`grep -ne '# ====== Do not change this line' $< \
-					| awk -F : '{print $$1}'` \
-									$<      >>  $@
+	  | awk -F : '{print $$1}'`  $< >> $@
 	@chmod u+x $@
 
 corpus/%.eml: generators/output/%.py $(GNUPGHOME)
@@ -34,7 +32,7 @@ corpus/%.desc: generators/output/%.py $(GNUPGHOME) corpus/%.eml
 	@$< description  >  $@
 	@echo >> $@
 	@tools/printmimestructure < $(patsubst %.desc,%.eml,$@) \
-		| tee --append $@
+	  | tee --append $@
 	@$<  >  $@
 
 $(GNUPGHOME):
