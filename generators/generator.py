@@ -131,6 +131,7 @@ class Generator(email.message.Message):
                               '--homedir=corpus/OpenPGP/GNUPGHOME',
                               '--pinentry-mode=loopback',
                               '--passphrase', self.get_password_from(),
+                              '--no-emit-version',
                               '--armor', '--detach-sign',
                               '--digest-algo=sha256',
                               '-u', self.get('From')],
