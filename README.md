@@ -13,7 +13,8 @@ indicating their protection.
 Messages composed using either PGP/MIME or S/MIME should be able to
 use Memory Hole to add cryptographic protection for mail headers.
 
-Things in this repository:
+Things in this repository
+-------------------------
 
 corpus/ -- A collection of of e-mail messages that follow the Memory
            Hole standard.  Mail user agents interested in supporting
@@ -39,3 +40,20 @@ screenshots/ -- Screenshots of mail user agents rendering the corpus
 
 history/ -- Documents showing early development and documentation of
             the project.
+
+
+
+
+Alternatives
+------------
+
+### use the existing MIME headers in the top-most inner part
+
+one difference is that you cannot display them during decryption in
+most existing OpenPGP clients.  Another
+
+### wrap a message/rfc822 part
+
+This is how S/MIME specifies protected headers should be done.
+unfortunately, this is also how forwarded mail is represented, and
+most MUAs present it as such (see alexey melnikov's proposed draft)
