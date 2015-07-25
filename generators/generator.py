@@ -3,6 +3,7 @@
 import email.message
 import sys
 import os
+import re
 import subprocess
 
 data = {
@@ -121,14 +122,15 @@ class Generator(email.message.Message):
         wrapper.set_payload([emh,body])
         return wrapper
 
-    def get_password(self):
+    def get_password_from(self):
         '''This returns the expected password based on the From: address'''
         return re.sub(r'.*?([^@<]*)@.*', r'_\1_', self.get('From'))
+
     def sign(self,body):
         g = subprocess.Popen(['gpg2', '--batch',
                               '--homedir=corpus/OpenPGP/GNUPGHOME',
                               '--pinentry-mode=loopback',
-                              '--passphrase=_winston_',
+                              '--passphrase', self.get_password_from(),
                               '--armor', '--detach-sign',
                               '--digest-algo=sha256',
                               '-u', self.get('From')],
