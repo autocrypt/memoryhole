@@ -1,67 +1,14 @@
 #!/usr/bin/python3
 
-description = (
-'alternative text/html message with embedded header, unsigned'
-)
+from generator import Generator, gen_multipart_alternative
 
-# ====== Do not change this line =====================================
-#
-# common/common.py gets put here. m is a message; Subject and
-# Message-ID are automatically generated, but you can customize all
-# other aspects of the message.
+m = Generator('alternative text/html message with embedded header, unsigned', __file__)
 
 m.add_header('Date', 'Thu, 16 Jul 2015 11:44:44 +0200')
 m.add_header('To', 'Julia <julia@example.org>')
 m.add_header('From', 'Winston <winston@example.net>')
-m.set_type('multipart/mixed')
-m.set_boundary('xxxxxxxxxxxx')
 
-txt = '''This is a test
-message on multiple lines
+s = gen_multipart_alternative()
+m.wrap_with_header(s, inself=True)
 
-with a silly bit more.
--- 
-and a .sig here.
-'''
-
-html = '''<html>
-<head>
-<title>titles are usually unrendered</title>
-</head>
-<body>
-<p>This is a test<br/>message on multiple lines</p>
-<p>with a silly bit more.</p>
-<hr/>
-<p>and a .sig here.</p>
-</body>
-</html>
-'''
-embedded_header = ''
-for x in ['Date', 'Subject', 'From', 'To', 'Message-ID']:
-    embedded_header += x + ': ' + m.get(x) + '\n'
-
-emh = email.message.Message()
-emh.set_type('text/rfc822-header')
-emh.add_header('Content-Disposition', 'attachment')
-emh.set_payload(embedded_header)
-
-s = email.message.Message()
-s.set_type('multipart/alternative')
-s.set_boundary('yyyyyyyyyyyyy')
-
-
-
-t = email.message.Message()
-t.set_type('text/plain')
-t.set_payload(txt)
-
-h = email.message.Message()
-h.set_type('text/html')
-h.set_payload(html)
-
-s.set_payload([t,h])
-
-m.set_payload([emh,s])
-
-sys.stdout.buffer.write(m.as_bytes())
-
+m.main()

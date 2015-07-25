@@ -105,13 +105,16 @@ class Generator(email.message.Message):
             if self.get(x):
                 r += x + ': ' + self.get(x) + '\n'
         return r
-    def wrap_with_header(self, body):
+    def wrap_with_header(self, body, inself=False):
         emh = email.message.Message()
         emh.set_type('text/rfc822-header')
         emh.add_header('Content-Disposition', 'attachment')
         emh.set_payload(self.build_embedded_header())
-        
-        wrapper = email.message.Message()
+
+        if inself:
+            wrapper = self
+        else:
+            wrapper = email.message.Message()
         wrapper.set_type('multipart/mixed')
         wrapper.set_boundary(gen_boundary())
 
@@ -154,14 +157,9 @@ class Generator(email.message.Message):
 
         
     def main(self):
-        if(len(sys.argv) > 1):
-            if sys.argv[1] == 'description':
-                print(self.description)
-                print('')
-                render_mime_structure(self, stream=sys.stdout)
-            else:
-                print('only takes one subcommand: "description"', file=sys.sterr)
-                exit(1)
-        else:
-            sys.stdout.buffer.write(self.as_bytes())
+        sys.stdout.buffer.write(self.as_bytes())
+        descstream = open(3, mode='w')
+        if descstream:
+            print(self.description, '\n', file=descstream)
+            render_mime_structure(self, stream=descstream)
 
