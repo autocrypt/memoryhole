@@ -5,13 +5,13 @@ To: Julia <julia@example.org>
 From: Winston <winston@example.net>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg="pgp-sha256";
- protocol="application/pgp-signature"; boundary="xxxxxxxxxxxx"
+ protocol="application/pgp-signature"; boundary="cccccccccccc"
 
---xxxxxxxxxxxx
+--cccccccccccc
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="zzzzzzzzzzzz"
+Content-Type: multipart/mixed; boundary="bbbbbbbbbbbb"
 
---zzzzzzzzzzzz
+--bbbbbbbbbbbb
 MIME-Version: 1.0
 Content-Type: text/rfc822-header
 Content-Disposition: attachment
@@ -22,11 +22,11 @@ From: Winston <winston@example.net>
 To: Julia <julia@example.org>
 Message-ID: A@memoryhole.example
 
---zzzzzzzzzzzz
+--bbbbbbbbbbbb
 MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="yyyyyyyyyyyyy"
+Content-Type: multipart/alternative; boundary="aaaaaaaaaaaa"
 
---yyyyyyyyyyyyy
+--aaaaaaaaaaaa
 MIME-Version: 1.0
 Content-Type: text/plain
 
@@ -37,7 +37,7 @@ with a silly bit more.
 -- 
 and a .sig here.
 
---yyyyyyyyyyyyy
+--aaaaaaaaaaaa
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -53,24 +53,24 @@ Content-Type: text/html
 </body>
 </html>
 
---yyyyyyyyyyyyy--
+--aaaaaaaaaaaa--
 
---zzzzzzzzzzzz--
+--bbbbbbbbbbbb--
 
---xxxxxxxxxxxx
+--cccccccccccc
 MIME-Version: 1.0
 Content-Type: application/pgp-signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQEcBAABCAAGBQJVrGs8AAoJEBX7TryOLWy3KWcH/3KYuEdTHewUKwk6JBnFUupJ
-2Pp4ps7H1VkUrZh26BXQTBxj/Q3WpesztjhCyAIw5cPBI1INm0TjIXsaT/wdfuON
-cii0Yoi+JIq98Hc4RBVzEFysZUI60+uG1P2vGlUfFjGVG+XNsO08P2BTns7L6+C4
-syfKmpIc8YRKLa0su8xQffeO7qpK/AgejL6xyzEwb4L8Cw8F1ewZYOfHew9mgwBF
-FrX66MvRpZFc3gYRNgs5ff3nd6T8zo9kWGL2qj/BOqlg9lZ6YvewwTsWAvKKCI+A
-hf0V63NZyhjrgHkiflkbkwHB/PpFyGlzmXe5iJ4uwBJF+E423mGXVNghdTv4Q3g=
-=wUeb
+iQEcBAABCAAGBQJVs+7FAAoJEBX7TryOLWy3PGAH/003aOXhyyO8NYz7PV4LpiYy
+/QJbiXbjciiGEsCzGDfpeoj2psdbZM55JHk9lAp7jUnzjnqouTJY7I16KhqIzZOl
+EfnxReZ6OpW1rfJpgv3kPKbXvb/ud9vORXE9fsBnDjwi6nqf2y+WnWgYDNDLIBTY
+QfF9WYeoRGFIkYxFJuDe5bANUzUKVHiRUCx78gpK2Lub4edwOOoUxjgn+jpo8BS5
+Dqlno9ciRkS16QGVFF9Y3VI0chlDo19VSMQRCnRmj9TRHbRLhSepwSnSFJ0qu4yK
+t0K7nVV1ev839XaFumY1eCIxjtIdp1zU0ZwLx30GrQVLS5gU9mKq3PXWqcI5oCQ=
+=dt9N
 -----END PGP SIGNATURE-----
 
---xxxxxxxxxxxx--
+--cccccccccccc--
