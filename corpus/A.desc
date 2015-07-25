@@ -1,76 +1,9 @@
-Subject: alternative text/html message with embedded header, signed
-Message-ID: A@memoryhole.example
-Date: Thu, 16 Jul 2015 11:44:44 +0200
-To: Julia <julia@example.org>
-From: Winston <winston@example.net>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg="pgp-sha256";
- protocol="application/pgp-signature"; boundary="xxxxxxxxxxxx"
+alternative text/html message with embedded header, signed
 
---xxxxxxxxxxxx
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="zzzzzzzzzzzz"
-
---zzzzzzzzzzzz
-MIME-Version: 1.0
-Content-Type: text/rfc822-header
-Content-Disposition: attachment
-
-Date: Thu, 16 Jul 2015 11:44:44 +0200
-Subject: alternative text/html message with embedded header, signed
-From: Winston <winston@example.net>
-To: Julia <julia@example.org>
-Message-ID: A@memoryhole.example
-
---zzzzzzzzzzzz
-MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="yyyyyyyyyyyyy"
-
---yyyyyyyyyyyyy
-MIME-Version: 1.0
-Content-Type: text/plain
-
-This is a test
-message on multiple lines
-
-with a silly bit more.
--- 
-and a .sig here.
-
---yyyyyyyyyyyyy
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-<head>
-<title>titles are usually unrendered</title>
-</head>
-<body>
-<p>This is a test<br/>message on multiple lines</p>
-<p>with a silly bit more.</p>
-<hr/>
-<p>and a .sig here.</p>
-</body>
-</html>
-
---yyyyyyyyyyyyy--
-
---zzzzzzzzzzzz--
-
---xxxxxxxxxxxx
-MIME-Version: 1.0
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQEcBAABCAAGBQJVrGs9AAoJEBX7TryOLWy3H1EH/0S2VPprU74N5ZqSjXLWTLGV
-cIAICGpypwqXSZUavSFuLOfMuik9gfRvIo9ZcdNaNM6U0LkmG9AtPFUKZwocF7iI
-bpmkG3Hv11swqkHSv4vbOUMoYV+8HqcNxXMGwABD3VpcMh4ApdtFe5GJBujAKUFZ
-sTAs5U8KUc721I2M72XQ+SFJcu2d6kLh35lqp6KVk+9wlZEHqfKoZfmfuubHPDe/
-ImQo+KLBr6kc9owIDQB0YpCo2mZRcUVCDffDx3V5u51vy1tbaGXyPmsrKqsATvml
-RChPLT5BMnoOIFdWloLsO41qyjAyKxGFAWebLQjwEdYCXDlJ2cMZotHNsi4mMRQ=
-=71Cp
------END PGP SIGNATURE-----
-
---xxxxxxxxxxxx--
+└┬╴multipart/signed 1814 bytes
+ ├┬╴multipart/mixed 936 bytes
+ │├─╴text/rfc822-header 157 bytes
+ │└┬╴multipart/alternative 508 bytes
+ │ ├─╴text/plain 86 bytes
+ │ └─╴text/html 202 bytes
+ └─╴application/pgp-signature 473 bytes
