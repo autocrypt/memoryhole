@@ -12,5 +12,16 @@ for x in winston obrian julia; do
     <$x.key gpg2 --batch --pinentry-mode=loopback --passphrase=_${x}_ --import
 done
 
+# mark all keys with ultimate ownertrust.  This is a silly hack, but
+# it's due to the fact that this corpus hasn't really decided whether
+# the GnuPG homedir is supposed to represent one particular user's
+# config (in which case we should just import one secret key, mark it
+# with ultimate ownertrust and have it sign the others) or just
+# pragmatically handle all the secret keys in a single homedir.  For
+# now, we're opting for the latter.
 
-    
+gpg2 --import-ownertrust <<EOF
+5A7AD43844FB30BE7DB1B3FD15FB4EBC8E2D6CB7:6
+9A9CC2E1546C7A04D23048641BC98889B8EA08B3:6
+2BC85B8EF240B7422E9C19F2E0D7563140A09310:6
+EOF
