@@ -8,7 +8,9 @@ MAILDIR_MAILS = $(patsubst corpus/%.eml,\
                            inboxes/maildir/cur/%.eml,\
                            $(EMAILS))
 
-TARGETS = $(EMAILS) $(MAILDIR_MAILS)
+MBOX_DATE = 2015-01-01 00:00:00-0000
+
+TARGETS = $(MAILDIR_MAILS) inboxes/mbox
 
 default: $(TARGETS)
 
@@ -19,6 +21,9 @@ inboxes/maildir/cur/%.eml: corpus/%.eml
 	@echo Copying $(notdir $<) to maildir
 	@mkdir -p inboxes/maildir/{cur,new,tmp}
 	@cp $< $@
+
+inboxes/mbox: $(EMAILS)
+	for x in $^; do echo 'From - $(MBOX_DATE)'; cat "$$x"; echo "" ; done >$@
 
 $(GNUPGHOME):
 	@echo Generating $@
