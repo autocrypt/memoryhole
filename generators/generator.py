@@ -158,6 +158,56 @@ class Generator(email.message.Message):
 
         self.set_payload([body,sig])
 
+
+    def encrypt(self,body, sign=False):
+        
+        args = ['gpg2', '--batch',
+                '--homedir=corpus/OpenPGP/GNUPGHOME',
+                '--no-emit-version',
+                '--armor',
+                '--digest-algo=sha256']
+        for f in ['To', 'Cc', 'From']:
+            n = self.get_all(f)
+            if n:
+                for x in n:
+                    args += ['--recipient', '='+x]
+        if sign:
+            args += ['--pinentry-mode=loopback',
+                     '--passphrase', self.get_password_from(),
+                     '-u', self.get('From'),
+                     '--sign']
+        args += ['--encrypt']
+        g = subprocess.Popen(args,
+                             stdin=subprocess.PIPE,
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.PIPE)
+
+        # FIXME: this is a sloppy conversion, because it would convert any thing already crlf
+        # FIXME: it's also possible that this should do a conversion to string
+        # form or something, instead of using raw bytes
+        (sout, serr) = g.communicate(body.as_bytes().replace(b'\n', b'\r\n'))
+        if serr is not None:
+            sys.stderr.buffer.write(serr)
+
+        enc = email.message.Message()
+        enc.set_type('application/pgp-encrypted')
+        enc.set_payload('Version: 1')
+
+        data = email.message.Message()
+        data.set_type('application/octet-stream')
+        data.set_payload(sout)
+
+        self.set_type('multipart/encrypted')
+        self.set_param('protocol', 'application/pgp-encrypted')
+        self.set_boundary(gen_boundary())
+
+        self.set_payload([enc,data])
+        self.strip_headers()
+
+    def strip_headers(self):
+        self.replace_header('Subject', 'Memory Hole Encrypted Message')
+        # FIXME: anything else to strip?  for now we're just testing
+        # with the Subject.
         
     def main(self):
         outfile = open(os.path.join('corpus',self.messagename+'.eml'), mode='w')
