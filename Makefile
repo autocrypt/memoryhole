@@ -1,4 +1,4 @@
-GENERATORS = $(wildcard generators/?.py)
+GENERATORS = $(sort $(wildcard generators/?.py))
 
 EMAILS = $(patsubst generators/%.py,corpus/%.eml,$(GENERATORS))
 
