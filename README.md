@@ -44,16 +44,29 @@ history/ -- Documents showing early development and documentation of
 
 
 
-Alternatives
-------------
+Alternatives Considered
+-----------------------
 
 ### use the existing MIME headers in the top-most inner part
 
-one difference is that you cannot display them during decryption in
-most existing OpenPGP clients.  Another
+Concern: we cannot expect legacy OpenPGP-compatible clients to display
+these headers during decryption, which means a Subject: line might get
+lost.
 
-### wrap a message/rfc822 part
+Advantage: This is symmetric to the behavior of most MUAs
+w.r.t. Content-Type: -- after decryption, they treat the message as
+the embedded Content-Type, not the external Content-Type.
+
+Advantage: there is no doubt about the position/placement of the
+headers (you don't need to worry that there will be another
+text/rfc822-header sub-part which causes ambiguity).
+
+TODO: ensure that RFC3156 (and the equivalent RFC for S/MIME) doesn't
+forbid this approach.
+
+### wrap the whole message as an message/rfc822 sub-part
 
 This is how S/MIME specifies protected headers should be done.
 unfortunately, this is also how forwarded mail is represented, and
-most MUAs present it as such (see alexey melnikov's proposed draft)
+most MUAs present it as such (see alexey melnikov's proposed draft for
+a marginal improvement).
