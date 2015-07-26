@@ -160,8 +160,10 @@ class Generator(email.message.Message):
 
         
     def main(self):
-        sys.stdout.buffer.write(self.as_bytes())
-        descstream = open(3, mode='w')
+        outfile = open(os.path.join('corpus',self.messagename+'.eml'), mode='w')
+        if outfile:
+            outfile.buffer.write(self.as_bytes())
+        descstream = open(os.path.join('corpus',self.messagename+'.desc'), mode='w')
         if descstream:
             print(self.description, '\n', file=descstream)
             render_mime_structure(self, stream=descstream)

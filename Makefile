@@ -15,7 +15,7 @@ TARGETS = $(MAILDIR_MAILS) inboxes/mbox
 default: $(TARGETS)
 
 corpus/%.eml: generators/%.py $(GNUPGHOME)
-	$< > $@ 3> corpus/$*.desc
+	$<
 
 inboxes/maildir/cur/%.eml: corpus/%.eml
 	@echo Copying $(notdir $<) to maildir
