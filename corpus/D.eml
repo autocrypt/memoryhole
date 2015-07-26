@@ -1,0 +1,46 @@
+Subject: Memory Hole Encrypted Message
+Message-ID: D@memoryhole.example
+Date: Thu, 16 Jul 2015 11:44:44 +0200
+To: Julia <julia@example.org>
+From: Winston <winston@example.net>
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+ boundary="cccccccccccc"
+
+--cccccccccccc
+MIME-Version: 1.0
+Content-Type: application/pgp-encrypted
+
+Version: 1
+--cccccccccccc
+MIME-Version: 1.0
+Content-Type: application/octet-stream
+
+-----BEGIN PGP MESSAGE-----
+
+hQEMA5I+4kg3RI5lAQf/ZNFMFOtoYaF/yTyLy/dchWBNHgiysIzJTeegZG+dJp/G
+Mx2KuUOUqxWHpYJjiSCnl27bVbvX1LcgLfGDFSTUBxe8bBHnIa+EdOe8slUY5lX8
+69L856MuPO/PSnNDkgcFXx8hRKSXBOx6rVJThiyAZOgmoqYoGq+9P6iydDfjsDk/
+7QVr35RYaFaC8U1Am3aVRkBRVIPc20ACXmzAU1lN/btC9q2VKIy/G5yb7D5KVsDB
+G8OvY/SPrEN+dBNcnzaXpm0dfIiGroVaQ+NrBiOUn/SThmMJ6I+zmoNYWDMt0oav
+zCDl9TZCRdQvtr9hLEUOmvosBWpDIWhk2mYMJIQgD4UBDANLbJvEVDbKBwEH/RTk
++Z8z1NDCPCPR/5wf89JI8eb92/qZHXegc5ysE7U8LICRDYEU9Xd6pTioe78FlEHC
+axuI9X7G5J0niuCckQn5PAbl73gIddR+WFfMMshW6WN/G0AIcy8dR+M12lRmnkK9
+YYLHBa6EkIIY0GVkT6x5q0gGZvTd10Pet4IeCGkBIqzwDFi0BmHSwWToPWgBvt3h
+CsNKZwZvjlNqDPWL+cVERrtfx7f4yC+rcjVeEqcYbPYghGOrY1kyqfYls54yOUDq
+t6jbe3k/qj5HbrsNS9qRKTbCsTQRS8yQ5+CkVtLwL04/LruhjEnA3NbJBOUUsA+a
+AOUr75nxdL1s/6RDnxTSwS8BAOUjKWa5UAOkEUtn/ZQ4EudjUuNqBryu0qnWKcsb
+VWV5tJxtTmVTbhbuqg/ChUnogw84DchrJ7cv6H3oZDPc/f7gbW1Q1Chgnc0eJviB
+wbooPuo/NGPSCI71bdd9KERrevPOCJnvEt42hXSNiVUodH/dk9VgGReaJr5BurlR
+kJijyS720Vumf87976PNX7Ncps0CbZ5fC4PMVZydZSDEIfQ2roVRPCEdD/N/N5T5
+wJrVa/XpAHwH58lc9i3d2Cv9PeeT/NVvgo/v5Xiww5pPXwKfaG4IZEkMoqNJ7l7g
+tDu+CAVRHqSDSP9j6T3Sx1h68AEqURMg6HJIa17v+n4ovfcvtFMHnYvJL/0+S7gl
+IKO90MpySRcxMS5tvZSolabaZj0RuSSlB5eWh4j7Z1uM+OEq9B8jZDxr7cxarXDe
+uuDSG/BcGzU5QQeC6TKjTlP98INPP1MvSNU4cNz1QohW95pGMViWPkJ4tufcCJW9
+Q2eO7ppcxk0xSUBDjxe5fN17qkKQEUZaWBI41xqwSPLGGzsIB+ws4imareAhvBZf
+1AigxweAKpwwBsfc/Wt71iIRfpHJuEKVCWh1mUwQyvrbrsXNHx+XMKQuEFrB1oI8
+2yULD5UoU6Daw6VWefUOOaJnHV6Xh4YjiNUMrRi4lds=
+=XuB9
+-----END PGP MESSAGE-----
+
+--cccccccccccc--

@@ -1,0 +1,54 @@
+Subject: Memory Hole Encrypted Message
+Message-ID: E@memoryhole.example
+Date: Thu, 16 Jul 2015 11:44:44 +0200
+To: Julia <julia@example.org>
+From: Winston <winston@example.net>
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+ boundary="cccccccccccc"
+
+--cccccccccccc
+MIME-Version: 1.0
+Content-Type: application/pgp-encrypted
+
+Version: 1
+--cccccccccccc
+MIME-Version: 1.0
+Content-Type: application/octet-stream
+
+-----BEGIN PGP MESSAGE-----
+
+hQEMA5I+4kg3RI5lAQf9GcUwMtn7jxr5Dp6dGCkY4FTe7e9i5WNS9BooUNT+g9qx
+0fdLdhHc7cia0QbGtyYCUE4KArlCCtp67LHYxQYM2FeyBvcCPWOsvYDIJ3DEpmt2
+6trSPhPi51vi8hIQ5JBo3Rq1ZjF0fcmGUZGjFfhX04O1IUCAOpxR1KN3AsNspacY
+W+s4sjjYKWq31/5XmcoNwEgFIkct4yeI6zLiOnF4XwqcVz288obtiTx/pRdoFdov
+hvbbXbQUYpcIKYjJwGmQ4Kubbnmp6zU0dB6tMFC9MFQXOjs8awARGz4YQvAmJGs/
+C4g2lP5rRKfiLdt5n3a2d0BrI9wkXmB1Bc+bP+Q29oUBDANLbJvEVDbKBwEH/R4g
+9nbuk7Ni8VYzi79tFysvYlgckK/Jyjz5rIxxe/a+Zp4/t9NkgcfJzAagEziFbQgX
+nxbuDZx1EjpNMSjNs9z8cYnN0s3UGzvvgZQGLjLLOxswWiaM6FleP/lZuuZlbXFp
+tsGDPOm+M1pNcLQxmICP7rw412VVrNxqlAo+2qxOZClNHRNVi2CIDJs28XItr/jT
+E4SLS5Mx2AaL+W5vUxrEwiH0+BNZWI37XawcWz2Qy1kmxW58Ew/a9ycuKP2ZnBiq
+/eZVYtwDvP5hG2RLrX08AQAZQrhbtfMi3q0QUnU/bLzdV88v4fDIUYHec6h32vlZ
+LUVbH9f94dqho08DwdHS6QHzVrQFoZZaiMv3eIgzhEkPJ+QmDOE0Gp8DWHvR35/x
+EZdNirSyn0GScaahYz3e5Ek1Fcfye8l9FcjQM+BdFSK6xXjIlSWC3DygqcCXYrHm
+2rwP2Tlq5ubipOqONW3Ad4Ix54hi0cL3mCX8u4d96SUj3mjVP9DD8lwhZY3chxOy
+yya2oL32jUN55iGhIRDu/STcLlcIS6xb6Fq0P/10XuoiFFbIDno8ATCYxCsAflCk
+JH0rmVH+DUUKCkqbL1EkeFlp/faJcSla8HYW35MiTXl7W1wwSaBHy1uDd67icOVN
+XrAvTYuxbdLuxZlDb0wqXCbUCJDeQKSb2igo3L7q6elYN/jK8ooB4JrQ6jSHT8QM
+3SsPVFLSZfDjX3sBLQp8wXkj2hH2VhDUzs/KAu4T8KzSRtHiv55bLCx3GtbNG8cM
+yYIBp5ex6T0utFaay+T3SSUsRRJV6RTBIkWv+7pARVlN3WFV2oKjvE1g4Rr//wtj
+fV8XQ3ouHzxkdSDsMNg4dXXBtpnrfQCLrTfbtUgJOBtcpIA9xe5wP8F5NriTSLSL
+sWiLLxSev3en9v0QKgj7BBMCaiOQf29VPpciDzplxmxwRcgPRbDopiNB+pS/W/aB
+67A8Ul/0DBw2n55YWkXR/tg2bz3LkYK3OMbRTzaVZLIQx4HbKVk7dUfhs4SMtTpp
+wJ72MdBm5x7MIr67c8alMvwDXRJav7odgkLAIjNZq1C9epBaQkONTtaYnx9E9SvY
+ZIDV1rcXs77nHyry8ZD6kFup2qi9WtzQerqKMEUjM4ew0YwTAYahYGA+yRkmUO1L
+IJT2jBHXT1azroTCNby78Ig7iXT7pTGGjpts/idpsAUDSzw1QGM2cDHrhSvnbm7J
+UkqqQMRdN+uxvop7p3vFIvRK9ovST1oAMbQnFHBAINLJ3qZckiC6h9jjTa5KylKR
+Cdwtk2Vlx53lkvkYSPjMExDFBpMgj24H14O3tdat4w4OcKuIi/HRaI4Mk/cWumqR
+WbPcENNRSXyJYUxcjlYr+nDPGx0rGQqufxqb54vK2UT9+zBMPG83IZG3MA1AFkJ1
+XqGyrUfmSqnHw12nN1Mu+k9+Sf/u8gHBn5hFNnTUUUiHFukJGvbE2A4nd1Kdyl8Q
+jxp7/4Se4OHgZcvvKFjQTg==
+=Fyzd
+-----END PGP MESSAGE-----
+
+--cccccccccccc--
