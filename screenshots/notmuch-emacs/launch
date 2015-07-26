@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# script for launching notmuch-emacs pointing at the maildir with
+# these messages this should be run from the root of the repository as
+# ./screenshots/notmuch-emacs/launch
+
+# Author: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+
+export NOTMUCH_CONFIG="$(pwd)/screenshots/notmuch-emacs/.notmuch-config"
+export GNUPGHOME="$(pwd)/corpus/OpenPGP/GNUPGHOME"
+
+cat >"${NOTMUCH_CONFIG}" <<EOF
+[database]
+path=$(pwd)/inboxes/maildir
+
+[user]
+name=Winston
+primary_email=winston@example.net
+
+[new]
+tags=unread;inbox;
+
+[crypto]
+gpg_path=/usr/bin/gpg2
+EOF
+
+notmuch new
+emacs --eval '(progn (notmuch-hello))'
