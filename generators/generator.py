@@ -29,7 +29,7 @@ and a .sig here.
     'bgen': ord('a')
 }
 
-    
+
 def gen_boundary():
     r = chr(data['bgen']) * 12
     data['bgen'] += 1
@@ -40,7 +40,7 @@ def gen_text_plain():
     t.set_type('text/plain')
     t.set_payload(data['txt'])
     return t
-    
+
 def gen_text_html():
     h = email.message.Message()
     h.set_type('text/html')
@@ -55,7 +55,7 @@ def gen_multipart_alternative():
     return s
 
 
-# adapted from notmuch:devel/printmimestructure 
+# adapted from notmuch:devel/printmimestructure
 def render_mime_structure(z, prefix='└', stream=sys.stdout):
     '''z should be an email.message.Message object'''
     fname = '' if z.get_filename() is None else ' [' + z.get_filename() + ']'
@@ -106,6 +106,8 @@ class Generator(email.message.Message):
             if self.get(x):
                 r += x + ': ' + self.get(x) + '\n'
         return r
+
+
     def wrap_with_header(self, body, inself=False):
         emh = email.message.Message()
         emh.set_type('text/rfc822-header')
@@ -138,7 +140,7 @@ class Generator(email.message.Message):
                              stdin=subprocess.PIPE,
                              stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
-        
+
 
         # FIXME: this is a sloppy conversion, because it would convert any thing already crlf
         # FIXME: it's also possible that this should do a conversion to string
@@ -160,7 +162,6 @@ class Generator(email.message.Message):
 
 
     def encrypt(self,body, sign=False):
-        
         args = ['gpg2', '--batch',
                 '--homedir=corpus/OpenPGP/GNUPGHOME',
                 '--no-emit-version',
@@ -208,7 +209,7 @@ class Generator(email.message.Message):
         self.replace_header('Subject', 'Memory Hole Encrypted Message')
         # FIXME: anything else to strip?  for now we're just testing
         # with the Subject.
-        
+
     def main(self):
         outfile = open(os.path.join('corpus',self.messagename+'.eml'), mode='w')
         if outfile:
