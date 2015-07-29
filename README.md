@@ -64,6 +64,8 @@ text/rfc822-header sub-part which causes ambiguity).
 TODO: ensure that RFC3156 (and the equivalent RFC for S/MIME) doesn't
 forbid this approach.
 
+Examples: see {F,G,H}.eml in the `corpus` directory.
+
 ### wrap the whole message as an message/rfc822 sub-part
 
 This is how S/MIME specifies protected headers should be done.
