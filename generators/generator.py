@@ -35,10 +35,13 @@ def gen_boundary():
     data['bgen'] += 1
     return r
 
-def gen_text_plain():
+def gen_text_plain(generator=None):
     t = email.message.Message()
     t.set_type('text/plain')
-    t.set_payload(data['txt'])
+    if generator and generator.extended_description:
+        t.set_payload(generator.extended_description)
+    else:
+        t.set_payload(data['txt'])
     return t
 
 def gen_text_html():
@@ -47,11 +50,11 @@ def gen_text_html():
     h.set_payload(data['html'])
     return h
 
-def gen_multipart_alternative():
+def gen_multipart_alternative(generator=None):
     s = email.message.Message()
     s.set_type('multipart/alternative')
     s.set_boundary(gen_boundary())
-    s.set_payload([gen_text_plain(),gen_text_html()])
+    s.set_payload([gen_text_plain(generator),gen_text_html()])
     return s
 
 
@@ -89,10 +92,11 @@ def render_mime_structure(z, prefix='└', stream=sys.stdout):
 
 
 class Generator(email.message.Message):
-    def __init__(self, description, messagename):
+    def __init__(self, description, messagename, extended_description=None):
         email.message.Message.__init__(self)
         self.messagename = os.path.splitext(os.path.basename(messagename))[0]
         self.description = description
+        self.extended_description = extended_description
         self.add_header('Subject', description)
         self.add_header('Message-ID',  self.messagename + '@memoryhole.example')
 
@@ -217,5 +221,7 @@ class Generator(email.message.Message):
         descstream = open(os.path.join('corpus',self.messagename+'.desc'), mode='w')
         if descstream:
             print(self.description, '\n', file=descstream)
+            if self.extended_description:
+                print(self.extended_description, file=descstream)
             render_mime_structure(self, stream=descstream)
 
