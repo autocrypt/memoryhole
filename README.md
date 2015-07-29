@@ -70,5 +70,6 @@ Examples: see {F,G,H}.eml in the `corpus` directory.
 
 This is how S/MIME specifies protected headers should be done.
 unfortunately, this is also how forwarded mail is represented, and
-most MUAs present it as such (see alexey melnikov's proposed draft for
-a marginal improvement).
+most MUAs present it as such (see [Alexey Melnikov's proposed draft
+for an improvement over this
+strategy](https://tools.ietf.org/html/draft-melnikov-smime-header-signing-02)).
