@@ -132,7 +132,9 @@ class Generator(email.message.Message):
         '''This returns the expected password based on the From: address'''
         return re.sub(r'.*?([^@<]*)@.*', r'_\1_', self.get('From'))
 
-    def sign(self,body):
+    def sign(self,body,sender=None):
+        if not sender:
+            sender = self.get('From')
         g = subprocess.Popen(['gpg2', '--batch',
                               '--homedir=corpus/OpenPGP/GNUPGHOME',
                               '--pinentry-mode=loopback',
@@ -140,7 +142,7 @@ class Generator(email.message.Message):
                               '--no-emit-version',
                               '--armor', '--detach-sign',
                               '--digest-algo=sha256',
-                              '-u', self.get('From')],
+                              '-u', sender],
                              stdin=subprocess.PIPE,
                              stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
