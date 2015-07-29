@@ -1,0 +1,39 @@
+Subject: headers in top-level MIME: tampered subject and from
+Message-ID: H@memoryhole.example
+Date: Wed, 29 Jul 2015 09:31:44 +0100
+To: Julia <julia@example.org>
+From: Eve <eve@evilcorp.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg="pgp-sha256";
+ protocol="application/pgp-signature"; boundary="bbbbbbbbbbbb"
+
+--bbbbbbbbbbbb
+MIME-Version: 1.0
+Content-Type: text/plain; boundary="aaaaaaaaaaaa"
+Subject: headers in top-level MIME: subject restored to original
+From: Winston <winston@example.net>
+
+This email demonstrates including the memoryhole headers inside the
+top-level MIME object. The signed Subject and From are headers of the
+text/plain part, rather than having their own rfc822-headers part.
+
+This email has been tampered with. It was originally sent by Winston,
+who signed the body (including the memoryhole headers). Eve has
+fiddled with the From and Subject headers in-flight.
+
+--bbbbbbbbbbbb
+MIME-Version: 1.0
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEcBAABCAAGBQJVuKVJAAoJEBX7TryOLWy3GIUH+gLqXAdsPb7UcfLe5eZ/o5pn
+ZiM7dZgaIOD+vXOK6VGMdY10onzleOlyzuYv8nY0pcz3awrHIuz29DsSiVDFtJF8
+nNvjIkyLiAfGckdTRJWVDAYiEJ51dyl8EuhRajpCfr+h2to3a6nHdhkX5t+5C0aU
+JJGbnSamet2FfDAApE6cAHRUvApcF85/b7X46x+jSgZourNHerlcHUtsXUZP0IC+
+FQBFmCsGdW6w3j4q9PjvXzV0+PHrLzqTtf99KVxOkO7jEWGH7us1D+9Kf25Hza5o
+EwJn9uAWnCH28nuDSXqcY6oiAWNmYCqyw47uYjTe+LaD3HsyYIzs6iZTbynJ4nA=
+=Lpdg
+-----END PGP SIGNATURE-----
+
+--bbbbbbbbbbbb--
