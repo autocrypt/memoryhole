@@ -1,9 +1,9 @@
-headers in top-level MIME object: plaintext email 
+headers in top-level MIME object: signed plaintext email 
 
 This message demonstrates including the memoryhole headers inside the
 top-level MIME object. The signed Subject and From are headers of the
 text/plain part, rather than having their own rfc822-headers part.
 
-└┬╴multipart/signed 1264 bytes
+└┬╴multipart/signed 1278 bytes
  ├─╴text/plain 207 bytes
  └─╴application/pgp-signature 455 bytes

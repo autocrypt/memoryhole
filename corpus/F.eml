@@ -1,4 +1,4 @@
-Subject: headers in top-level MIME object: plaintext email
+Subject: headers in top-level MIME object: signed plaintext email
 Message-ID: F@memoryhole.example
 Date: Wed, 29 Jul 2015 09:31:44 +0100
 To: Julia <julia@example.org>
@@ -10,7 +10,7 @@ Content-Type: multipart/signed; micalg="pgp-sha256";
 --bbbbbbbbbbbb
 MIME-Version: 1.0
 Content-Type: text/plain; boundary="aaaaaaaaaaaa"
-Subject: headers in top-level MIME object: plaintext email
+Subject: headers in top-level MIME object: signed plaintext email
 From: Winston <winston@example.net>
 
 This message demonstrates including the memoryhole headers inside the
@@ -23,13 +23,13 @@ Content-Type: application/pgp-signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEcBAABCAAGBQJVuJwYAAoJEBX7TryOLWy3ogEH/0UVXKyW1bjRnvf7aEewl6m0
-SGrJhEy9jhHlOXNZ05XFrGUgjd0vox2oOgR2Wd0cUqxFSGE9JEP9QuI+WsfzBRv0
-3nY2ytQN8HbZifGlDXlzFTpnrf7ORVNytVZD7TibIrp9vUon7s9bt4iRifpUCxUD
-ZYpZpPap8FvDnJ48KbiS1FTmHxm//aJIVBzi2Wh14GdeIGog6O44q3/Y2QzjIf2L
-icdtwDaFA7lQtGfbnl53TNpWFFq9cwNkLIAmR3UhVhWUndcz9FZOIZzvkz7KRxL7
-BJY/tcsrl9c762V6KlDVYw9PP9jS1yPxDPff8kLG+Kg8eD8lDcbWty8XizN+NYI=
-=SeGc
+iQEcBAABCAAGBQJVuN70AAoJEBX7TryOLWy38FEIAIlHLFjGb1FVszIfYBilu+OK
+j63VQ72kDue8B9IOYzEETfIWCb6U+17wzGcvRJWP5NDsovpIA+p7Gq9GTWylAohQ
+UoT//QdjsQ7EcsH3ZdYKzYL/KvBHqDg2CosUAGh5KE0Ecfm2jZMx2Rk0B0tLbDOS
+zSRor4AHefpDVsVEcmel3vwwESCHjrrhFQ8aTosmjO2Pw9jyQcApZKTXiE1WgxHs
+uJ5RpMAFAJcNk7pm6d8oqJ9ADli76iGtEvN/tI4DsPljRhXV1EAiiLOe/PKQIbBW
+RctCZl+WmF+9k9L18SkGM7ZzKd4vQUE8TzMALFnSD4AEsBoC1AmGDAhuLE0/zUI=
+=BTde
 -----END PGP SIGNATURE-----
 
 --bbbbbbbbbbbb--
