@@ -12,7 +12,7 @@ TARGETS = $(MAILDIR_MAILS) inboxes/mbox
 
 default: $(TARGETS)
 
-corpus/%.eml: generators/%.py $(GNUPGHOME)
+corpus/%.eml: generators/%.py $(GNUPGHOME) generators/generator.py
 	$(GNUPGHOME) $<
 
 inboxes/maildir/cur/%.eml: corpus/%.eml
