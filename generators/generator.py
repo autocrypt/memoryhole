@@ -110,7 +110,7 @@ class Generator(email.message.Message):
 
     def wrap_with_header(self, body, inself=False):
         emh = email.message.Message()
-        emh.set_type('text/rfc822-header')
+        emh.set_type('text/rfc822-headers')
         emh.add_header('Content-Disposition', 'attachment')
         emh.set_payload(self.build_embedded_header())
 

@@ -61,7 +61,7 @@ header block
 : a collection of header lines associated with an e-mail message
 
 embedded header block
-: the text/rfc822-header MIME subpart located as the first immediate
+: the text/rfc822-headers MIME subpart located as the first immediate
   child of an encrypted or signed e-mail message
 
 embedded header line

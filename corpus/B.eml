@@ -8,7 +8,7 @@ Content-Type: multipart/mixed; boundary="bbbbbbbbbbbb"
 
 --bbbbbbbbbbbb
 MIME-Version: 1.0
-Content-Type: text/rfc822-header
+Content-Type: text/rfc822-headers
 Content-Disposition: attachment
 
 Date: Thu, 16 Jul 2015 11:44:44 +0200

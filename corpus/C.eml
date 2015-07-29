@@ -13,7 +13,7 @@ Content-Type: multipart/mixed; boundary="bbbbbbbbbbbb"
 
 --bbbbbbbbbbbb
 MIME-Version: 1.0
-Content-Type: text/rfc822-header
+Content-Type: text/rfc822-headers
 Content-Disposition: attachment
 
 Date: Thu, 16 Jul 2015 11:44:44 +0200
@@ -63,13 +63,13 @@ Content-Type: application/pgp-signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEcBAABCAAGBQJVtP9eAAoJEBX7TryOLWy3/coH/3LH1RvTLjQK+M2/jdoYjArt
-wtKDZs7HGEasQw18J1fTQDcoNTxdfNYVO9BISGZdU3+wOYzjRHXxMRsogzdvl9ck
-FkwgV+DNohuyLmzMM2FgozvsR//jGXnrwQsaAB9yoQy7oLkMYVsM0Zvgsc7mbIub
-8DXpwCnvULJvg1pnAu9aM6u2NyTVOKDwwGgs6627x7LNyglaBHzzx158dssofdNe
-oUPP/3XAwrDQ1BK6u30DOvksljD68bK9EzOSovIeGXEks0UBPC0LPNnPXnw9FvQb
-3NHygnHZFH5OzBlAj29uxrglSDwPlaNXyowh5uGHe5HZry0NXhOUr0h76YuGtIc=
-=VDpx
+iQEcBAABCAAGBQJVt/DkAAoJEBX7TryOLWy33LEH/jPLbaxnlJhvTBt66umGjXHg
+f+fi6vnG8lV4UsqJmj8RkZpNXkL3n+nCRAKAnAQwzMFep1VaFe8jLBHwQETpTHc4
+L67npH3UFySpQ2IYO5K5NmHX9a9fLLiveHJTjVko/hwNm+SibW5YvBbJlk8snRjM
+Isw5yWhc5bUpr7Dj/6j3xjLTKx/vaLExbHu6Q72eLqavazJG6devacRp5yurrCXB
+m5mSmvSF/pIgyN/+EI2ALw4CpmTNT2vzxG9WCqPr/gLS6S8fCd+BzOULpC5lOYIN
+vPqYZZbXbM2b8E1DldjOURbcDsfAImKmboz3e0ZRo1MeZNJmg1rJXsfuPM42jyo=
+=mxAW
 -----END PGP SIGNATURE-----
 
 --cccccccccccc--
