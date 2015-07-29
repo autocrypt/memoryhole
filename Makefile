@@ -2,8 +2,6 @@ GENERATORS = $(sort $(wildcard generators/?.py))
 
 EMAILS = $(patsubst generators/%.py,corpus/%.eml,$(GENERATORS))
 
-GNUPGHOME=corpus/OpenPGP/GNUPGHOME
-
 MAILDIR_MAILS = $(patsubst corpus/%.eml,\
                            inboxes/maildir/cur/%.eml,\
                            $(EMAILS))
@@ -15,7 +13,7 @@ TARGETS = $(MAILDIR_MAILS) inboxes/mbox
 default: $(TARGETS)
 
 corpus/%.eml: generators/%.py $(GNUPGHOME)
-	GNUPGHOME=$(GNUPGHOME) $<
+	$(GNUPGHOME) $<
 
 inboxes/maildir/cur/%.eml: corpus/%.eml
 	@echo Copying $(notdir $<) to maildir
