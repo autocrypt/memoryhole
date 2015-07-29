@@ -3,7 +3,7 @@
 from generator import Generator, gen_text_plain, gen_boundary
 import email.message
 
-subject = 'headers in top-level MIME object: plaintext email'
+subject = 'headers in top-level MIME object: signed plaintext email'
 
 m = Generator(subject, __file__, '''\
 This message demonstrates including the memoryhole headers inside the
