@@ -172,6 +172,7 @@ class Generator(email.message.Message):
                 '--homedir=corpus/OpenPGP/GNUPGHOME',
                 '--no-emit-version',
                 '--armor',
+                '--compress-algo', 'none',
                 '--digest-algo=sha256']
         for f in ['To', 'Cc', 'From']:
             n = self.get_all(f)
