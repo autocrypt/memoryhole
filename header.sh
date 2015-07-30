@@ -48,7 +48,7 @@ $NARROW
         <a href="/memoryhole/corpus">Examples</a>
       </li>
       <li>
-        <a href="/memoryhole/specification">Specification</a>
+        <a href="/memoryhole/specs">Specification</a>
       </li>
       <li>
         <a href="/memoryhole/guidance">Guidance</a>

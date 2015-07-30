@@ -13,7 +13,7 @@ indicating their protection.
   e-mails](/memoryhole/corpus) to get an idea of how such emails are
   structured. Our examples come with screenshots, so that you can see
   how they look in various mail user agents.
-* Read our [draft of an IETF standard](/memoryhole/spec) explaining
+* Read our [draft of an IETF standard](/memoryhole/specs) explaining
   how to structure and interpret Memory Hole-compliant e-mails.
 * Read our [guidance for implementors](/memoryhole/guidance) for
   UI/UX, deployment and configuration considerations.

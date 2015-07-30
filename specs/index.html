@@ -1,0 +1,587 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Cryptographic Protection of E-mail Headers</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+
+  <link href="#rfc.toc" rel="Contents"/>
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 Message Structure"/>
+<link href="#rfc.section.3.1" rel="Chapter" title="3.1 Locating an embedded header"/>
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Content-Disposition"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 Distinguishing from DSN"/>
+<link href="#rfc.section.5" rel="Chapter" title="5 Consequences for encrypted headers"/>
+<link href="#rfc.section.6" rel="Chapter" title="6 Subject"/>
+<link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations"/>
+<link href="#rfc.section.8" rel="Chapter" title="8 Privacy Considerations"/>
+<link href="#rfc.section.9" rel="Chapter" title="9 IANA Considerations"/>
+<link href="#rfc.section.10" rel="Chapter" title="10 TODO"/>
+<link href="#rfc.references" rel="Chapter" title="11 Informative References"/>
+
+
+  <meta name="generator" content="xml2rfc version 2.4.7 - http://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Gillmor, D." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-memoryhole" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-7-30" />
+  <meta name="dct.abstract" content="Encrypted or signed e-mail does not have cryptographic protection of headers &#8211; only the body of an e-mail message is encrypted or signed.  This specification provides a solution to this problem by embedding relevant headers within the body of the e-mail in a well-structured way." />
+  <meta name="description" content="Encrypted or signed e-mail does not have cryptographic protection of headers &#8211; only the body of an e-mail message is encrypted or signed.  This specification provides a solution to this problem by embedding relevant headers within the body of the e-mail in a well-structured way." />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+  <td class="left">Unknown</td>
+  <td class="right">D. Gillmor</td>
+</tr>
+<tr>
+  <td class="left">Internet-Draft</td>
+  <td class="right">ACLU</td>
+</tr>
+<tr>
+  <td class="left">Intended status: Informational</td>
+  <td class="right">July 30, 2015</td>
+</tr>
+<tr>
+  <td class="left">Expires: January 31, 2016</td>
+  <td class="right"></td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">Cryptographic Protection of E-mail Headers<br />
+  <span class="filename">draft-memoryhole</span></p>
+  
+  <h1 id="rfc.abstract">
+  <a href="#rfc.abstract">Abstract</a>
+</h1>
+<p>Encrypted or signed e-mail does not have cryptographic protection of headers &#8211; only the body of an e-mail message is encrypted or signed.  This specification provides a solution to this problem by embedding relevant headers within the body of the e-mail in a well-structured way.</p>
+<h1 id="rfc.status">
+  <a href="#rfc.status">Status of This Memo</a>
+</h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on January 31, 2016.</p>
+<h1 id="rfc.copyrightnotice">
+  <a href="#rfc.copyrightnotice">Copyright Notice</a>
+</h1>
+<p>Copyright (c) 2015 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
+<li>2.   <a href="#rfc.section.2">Terminology</a></li>
+<li>3.   <a href="#rfc.section.3">Message Structure</a></li>
+<li>3.1.   <a href="#rfc.section.3.1">Locating an embedded header</a></li>
+<li>3.2.   <a href="#rfc.section.3.2">Content-Disposition</a></li>
+<li>4.   <a href="#rfc.section.4">Distinguishing from DSN</a></li>
+<li>5.   <a href="#rfc.section.5">Consequences for encrypted headers</a></li>
+<li>6.   <a href="#rfc.section.6">Subject</a></li>
+<li>7.   <a href="#rfc.section.7">Security Considerations</a></li>
+<li>8.   <a href="#rfc.section.8">Privacy Considerations</a></li>
+<li>9.   <a href="#rfc.section.9">IANA Considerations</a></li>
+<li>10.   <a href="#rfc.section.10">TODO</a></li>
+<li>11.   <a href="#rfc.references">Informative References</a></li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a></h1>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a></h1>
+<p/>
+
+<dl>
+  <dt>header line</dt>
+  <dd style="margin-left: 8">a single header field, like &#8220;Subject: encrypting mail headers&#8221;</dd>
+  <dt>header block</dt>
+  <dd style="margin-left: 8">a collection of header lines associated with an e-mail message</dd>
+  <dt>embedded header block</dt>
+  <dd style="margin-left: 8">the text/rfc822-headers MIME subpart located as the first immediate child of an encrypted or signed e-mail message</dd>
+  <dt>embedded header line</dt>
+  <dd style="margin-left: 8">a header line within an embedded header block</dd>
+  <dt>external header block</dt>
+  <dd style="margin-left: 8">the set of header lines located outside the body of an e-mail message</dd>
+  <dt>external header line</dt>
+  <dd style="margin-left: 8">a header line within an external header block</dd>
+</dl>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#message-structure" id="message-structure">Message Structure</a></h1>
+<h1 id="rfc.section.3.1"><a href="#rfc.section.3.1">3.1.</a> <a href="#locating-an-embedded-header" id="locating-an-embedded-header">Locating an embedded header</a></h1>
+<h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> <a href="#content-disposition" id="content-disposition">Content-Disposition</a></h1>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#distinguishing-from-dsn" id="distinguishing-from-dsn">Distinguishing from DSN</a></h1>
+<p id="rfc.section.4.p.1">see <a href="#RFC6522">[RFC6522]</a></p>
+<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#consequences-for-encrypted-headers" id="consequences-for-encrypted-headers">Consequences for encrypted headers</a></h1>
+<p id="rfc.section.5.p.1">Some message headers are more privacy/confidentiality sensitive than others.  When a block of headers are embedded in the encrypted body, the corresponding lines in the external header should be stripped or stubbed out, for at least some of the headers.</p>
+<p id="rfc.section.5.p.2">If confidentiality is desired for encrypted headers should be removed and and removing (or replacing with a dummy external ) has</p>
+<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#subject" id="subject">Subject</a></h1>
+<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
+<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#privacy-considerations" id="privacy-considerations">Privacy Considerations</a></h1>
+<h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a></h1>
+<p/>
+
+<ul>
+  <li>registering any new headers?</li>
+</ul>
+<h1 id="rfc.section.10"><a href="#rfc.section.10">10.</a> <a href="#todo" id="todo">TODO</a></h1>
+<p/>
+
+<ul>
+  <li>Should we mark this as updating any of the DSN RFCs?</li>
+  <li>Acknowledge message/rfc822 wrapping and explain why this is different</li>
+</ul>
+<h1 id="rfc.references"><a href="#rfc.references">11.</a> Informative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="RFC1891">[RFC1891]</b>
+      </td>
+      <td class="top"><a>Moore, K.</a>, "<a href="http://tools.ietf.org/html/rfc1891">SMTP Service Extension for Delivery Status Notifications</a>", RFC 1891, DOI 10.17487/RFC1891, January 1996.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC1892">[RFC1892]</b>
+      </td>
+      <td class="top"><a>Vaudreuil, G.</a>, "<a href="http://tools.ietf.org/html/rfc1892">The Multipart/Report Content Type for the Reporting of Mail System Administrative Messages</a>", RFC 1892, DOI 10.17487/RFC1892, January 1996.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC1894">[RFC1894]</b>
+      </td>
+      <td class="top"><a>Moore, K.</a> and <a>G. Vaudreuil</a>, "<a href="http://tools.ietf.org/html/rfc1894">An Extensible Message Format for Delivery Status Notifications</a>", RFC 1894, DOI 10.17487/RFC1894, January 1996.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC2047">[RFC2047]</b>
+      </td>
+      <td class="top"><a>Moore, K.</a>, "<a href="http://tools.ietf.org/html/rfc2047">MIME (Multipurpose Internet Mail Extensions) Part Three: Message Header Extensions for Non-ASCII Text</a>", RFC 2047, DOI 10.17487/RFC2047, November 1996.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC3156">[RFC3156]</b>
+      </td>
+      <td class="top"><a>Elkins, M.</a>, <a>Del Torto, D.</a>, <a>Levien, R.</a> and <a>T. Roessler</a>, "<a href="http://tools.ietf.org/html/rfc3156">MIME Security with OpenPGP</a>", RFC 3156, DOI 10.17487/RFC3156, August 2001.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5322">[RFC5322]</b>
+      </td>
+      <td class="top"><a>Resnick, P.</a>, "<a href="http://tools.ietf.org/html/rfc5322">Internet Message Format</a>", RFC 5322, DOI 10.17487/RFC5322, October 2008.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6522">[RFC6522]</b>
+      </td>
+      <td class="top"><a>Kucherawy, M.</a>, "<a href="http://tools.ietf.org/html/rfc6522">The Multipart/Report Media Type for the Reporting of Mail System Administrative Messages</a>", STD 73, RFC 6522, DOI 10.17487/RFC6522, January 2012.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.authors">
+  <a href="#rfc.authors">Author's Address</a>
+</h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Daniel Kahn Gillmor</span> 
+	  <span class="n hidden">
+		<span class="family-name">Gillmor</span>
+	  </span>
+	</span>
+	<span class="org vcardline">ACLU</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:dkg@fifthhorseman.net">dkg@fifthhorseman.net</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
