@@ -107,7 +107,7 @@ ul li {
 }
 
 code{
-  font-family: inconsolata monospace;
+  font-family: inconsolata;
   font-size: 12pt;
 }
 
@@ -121,7 +121,7 @@ pre code{
   overflow: scroll;
   overflow-x: hidden;
   display: block;
-  font-family: inconsolata monospace;
+  font-family: inconsolata;
   font-size: 12px
 }
 
@@ -141,7 +141,7 @@ pre {
   overflow: scroll;
   overflow-x: hidden;
   display: block;
-  font-family: inconsolata monospace;
+  font-family: inconsolata;
   white-space: pre;
 }
 
