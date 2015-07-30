@@ -1,0 +1,10 @@
+body{
+  width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+pre code {
+  width: 640px;
+  margin-left: 50px;
+}

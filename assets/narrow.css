@@ -1,0 +1,10 @@
+body {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: justify;
+}
+
+pre code {
+  margin-left: 5px;
+  margin-right: 5px;
+}

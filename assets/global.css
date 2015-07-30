@@ -1,0 +1,148 @@
+@font-face{
+  font-family: signika;
+  src: url(/memoryhole/assets/signika.ttf);
+}
+
+@font-face{
+  font-family: inconsolata;
+  src: url(/memoryhole/assets/inconsolata.otf);
+}
+
+@font-face{
+  font-family: montserrat;
+  src: url(/memoryhole/assets/Montserrat-Regular.ttf);
+}
+
+@font-face{
+  font-family: montserrat-bold;
+  src: url(/memoryhole/assets/Montserrat-Bold.ttf);
+}
+
+body {
+  background: #fdf6e3;
+  color: #657b83;
+  font-family: montserrat;
+  font-size: 12pt;
+}
+
+a{
+  padding: 0.1em;
+  border-radius: 0.5em;
+}
+a:link{
+  color: #6c71c4;
+}
+a:visited{
+  color: #d33682;
+  border-radius: 0.5em;
+  text-decoration: none;
+}
+a:visited:hover{
+  background-color: #6c71c4;
+  text-decoration: none;
+  background-color: #d33682;
+}
+a:hover{
+  text-decoration: none;
+  background-color: #6c71c4;
+  color: #fdf6e3;
+}
+a:active{
+  text-decoration: none;
+  background-color: #859900;
+  color: #fdf6e3;
+}
+a:visited:active{
+  text-decoration: none;
+  background-color: #859900;
+  color: #fdf6e3;
+}
+
+h1 {
+  font-size: 30pt;
+  font-weight: normal;
+  line-height: 30pt;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #586e75;
+  font-family: signika;
+}
+
+h2 {
+  font-size: 14pt;
+  font-weight: normal;
+  line-height: 14pt;
+  text-align: left;
+  color: #586e75;
+  margin-top: 30px;
+  margin-bottom: -10px;
+  font-family: montserrat-bold;
+}
+
+h3 {
+  font-size: 12pt;
+  font-weight: normal;
+  line-height: 12pt;
+  text-align: left;
+  color: #586e75;
+  margin-top: 30px;
+  margin-bottom: -10px;
+  font-family: montserrat-bold;
+}
+
+ul, ol {
+  margin-left: 0em;
+  padding-left: 0em;
+}
+
+ul li {
+  list-style-type: square;
+  margin-left: 1em;
+  list-style: circle;
+}
+
+code{
+  font-family: inconsolata;
+  font-size: 14pt;
+}
+
+pre code{
+  border: 1pt solid #657b83;
+  border-radius: 0.5em;
+  padding: 0.5em 0.5em 0.5em 1.5em;
+  background-color: #eee8d5;
+  color: #586e75;
+  max-height: 20em;
+  overflow: scroll;
+  overflow-x: hidden;
+  font-family: inconsolata;
+}
+
+hr{
+  border: none;
+  border-radius: 20px;
+  background-color: #657b83;
+  height: 2px;
+}
+
+.subtitle {
+  font-size: 16pt;
+  font-weight: normal;
+  line-height: 20pt;
+  margin-top: -25px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #586e75;
+}
+
+ul#navigation-ul {
+  text-align: center;
+  padding-left: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+ul#navigation-ul li {
+  display: inline;
+  margin-left: 1.2em;
+  margin-right: 1.2em;
+}
