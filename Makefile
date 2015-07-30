@@ -6,9 +6,12 @@ MAILDIR_MAILS = $(patsubst corpus/%.eml,\
                            inboxes/maildir/cur/%.eml,\
                            $(EMAILS))
 
+CSS=$(wildcard assets/*.css)
+
+
 MBOX_DATE = 2015-01-01 00:00:00-0000
 
-TARGETS = $(MAILDIR_MAILS) inboxes/mbox
+TARGETS = index.html
 
 default: $(TARGETS)
 
@@ -30,5 +33,13 @@ $(GNUPGHOME):
 clean:
 	-rm -rf $(MAILDIR_MAILS)
 	-rm -rf $(GNUPGHOME)
+
+%.html: %.md $(CSS) header.sh footer.sh
+	@echo -e               \
+	"`./header.sh $<`"     \
+	"`markdown $<`"        \
+	"`./footer.sh`"        \
+	> $@
+
 
 .PHONY: default clean maildir
