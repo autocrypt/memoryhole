@@ -4,6 +4,11 @@
 }
 
 @font-face{
+  font-family: liberation-mono;
+  src: url(/memoryhole/assets/liberation_mono.ttf);
+}
+
+@font-face{
   font-family: inconsolata;
   src: url(/memoryhole/assets/inconsolata.otf);
 }
@@ -123,7 +128,7 @@ pre code{
 pre {
   display: block;
   font-size: 12px;
-  font-family: inconsolata monospace;
+  font-family: liberation-mono, monospace;
 }
 
 .code-block {
