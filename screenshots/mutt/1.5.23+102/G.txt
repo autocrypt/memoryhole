@@ -1,0 +1,18 @@
+Date: Wed, 29 Jul 2015 09:31:44 +0100
+From: Winston <winston@example.net>
+To: Julia <julia@example.org>
+Subject: headers in top-level MIME object: signed multipart email
+
+[-- Begin signature information --]
+Good signature from: Winston <winston@example.net>
+            created: Wed 29 Jul 2015 10:59:44 BST
+[-- End signature information --]
+
+[-- The following data is signed --]
+
+This message demonstrates including the memoryhole headers inside the
+top-level MIME object. The signed Subject and From are headers of the
+multipart/alternative part, rather than having their own
+rfc822-headers part.
+
+[-- End of signed data --]

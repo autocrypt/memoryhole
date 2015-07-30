@@ -1,0 +1,33 @@
+Date: Thu, 16 Jul 2015 11:44:44 +0200
+From: Winston <winston@example.net>
+To: Julia <julia@example.org>
+Subject: alternative text/html message with embedded header, signed
+
+[-- Begin signature information --]
+Good signature from: Winston <winston@example.net>
+            created: Tue 28 Jul 2015 09:30:30 BST
+[-- End signature information --]
+
+[-- The following data is signed --]
+
+[-- Attachment #1 --]
+[-- Type: text/rfc822-header, Encoding: 7bit, Size: 0.2K --]
+
+Date: Thu, 16 Jul 2015 11:44:44 +0200
+Subject: alternative text/html message with embedded header, signed
+From: Winston <winston@example.net>
+To: Julia <julia@example.org>
+Message-ID: A@memoryhole.example
+
+[-- Attachment #2 --]
+[-- Type: multipart/alternative, Encoding: 7bit, Size: 0.4K --]
+
+This is a test
+message on multiple lines
+
+with a silly bit more.
+--
+and a .sig here.
+
+
+[-- End of signed data --]

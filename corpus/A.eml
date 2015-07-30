@@ -1,0 +1,75 @@
+Subject: alternative text/html message with embedded header, signed
+Message-ID: A@memoryhole.example
+Date: Thu, 16 Jul 2015 11:44:44 +0200
+To: Julia <julia@example.org>
+From: Winston <winston@example.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg="pgp-sha256";
+ protocol="application/pgp-signature"; boundary="cccccccccccc"
+
+--cccccccccccc
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="bbbbbbbbbbbb"
+
+--bbbbbbbbbbbb
+MIME-Version: 1.0
+Content-Type: text/rfc822-headers
+Content-Disposition: attachment
+
+Date: Thu, 16 Jul 2015 11:44:44 +0200
+Subject: alternative text/html message with embedded header, signed
+From: Winston <winston@example.net>
+To: Julia <julia@example.org>
+Message-ID: A@memoryhole.example
+
+--bbbbbbbbbbbb
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="aaaaaaaaaaaa"
+
+--aaaaaaaaaaaa
+MIME-Version: 1.0
+Content-Type: text/plain
+
+This is a test
+message on multiple lines
+
+with a silly bit more.
+-- 
+and a .sig here.
+
+--aaaaaaaaaaaa
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+<head>
+<title>titles are usually unrendered</title>
+</head>
+<body>
+<p>This is a test<br/>message on multiple lines</p>
+<p>with a silly bit more.</p>
+<hr/>
+<p>and a .sig here.</p>
+</body>
+</html>
+
+--aaaaaaaaaaaa--
+
+--bbbbbbbbbbbb--
+
+--cccccccccccc
+MIME-Version: 1.0
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEcBAABCAAGBQJVt/DjAAoJEBX7TryOLWy3JkIH/iYCfu47jAxUqRDy2AgOL31n
+4Sscl806URFG4940w5OTMiXHz0Ji0fCrMo8jSS+D3JCD6e2f+yC0tn4TFDkmNp8n
+iuwQzJ7ytGy97MiTjom8+ThqWWaeHvxiHBLnpWIqN71+1ozBkF2MKqrPvJu/U83Z
+H+hQA8qtggUXpXPSFgedYMHfTo0DpnaK3Xd+ZWgKOSEn+kPhlepjMsrgVkq2IGsn
+IYyyEQYKf9mrsgs6oCq37ggnB367/kfBPq27E4TxXxK4mOjctNEM9/9aetKFXhRr
+f33w+GO0+/1NeVKxul/25Q+Emt0LtZeMFS5Aj3E9JqD0TfKWo0j5k2lEjMqiFnA=
+=2Vyw
+-----END PGP SIGNATURE-----
+
+--cccccccccccc--

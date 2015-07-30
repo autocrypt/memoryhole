@@ -1,0 +1,5 @@
+alternative text/html message with embedded header, encrypted+signed 
+
+└┬╴multipart/encrypted 2435 bytes
+ ├─╴application/pgp-encrypted 10 bytes
+ └─╴application/octet-stream 1967 bytes
