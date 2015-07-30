@@ -7,8 +7,7 @@
     <meta name="robots" content="noimageindex">
     <meta name="googlebot" content="noimageindex">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Memory Hole
-Memory Hole Examples</title>
+    <title>Memory Hole Examples</title>
     <style>
       @font-face{font-family: signika; src: url(/memoryhole/assets/signika.ttf); }
       @font-face{font-family: inconsolata; src: url(/memoryhole/assets/inconsolata.otf); }
@@ -61,29 +60,79 @@ Memory Hole Examples</title>
         <a href="/memoryhole/guidance">Guidance</a>
       </li>
     </ul>
-    <hr /> <p>Encrypted or signed e-mail does not have cryptographic protection of
-headers; only the body of an e-mail message is encrypted or signed.</p>
+    <hr /> <p>This page contains examples of Memory Hole-compliant e-mails. You can
+check your favourite mail user agent's compliance with the Memory Hole
+standard by checking the screenshots associated with each e-mail.</p>
 
-<p>The Memory Hole project aims to fix this problem by stashing relevant
-headers within the body of the e-mail in a standardized way.
-Compatible mail user agents should be able to use this structure to
-display the cryptographically protected headers to the user,
-indicating their protection.</p>
-
-<h3>Resources:</h3>
+<h3>Contents</h3>
 
 <ul>
-<li>View a list of <a href="/memoryhole/corpus">example Memory Hole-compliant
-e-mails</a> to get an idea of how such emails are
-structured. Our examples come with screenshots, so that you can see
-how they look in various mail user agents.</li>
-<li>Read our <a href="/memoryhole/specs">draft of an IETF standard</a> explaining
-how to structure and interpret Memory Hole-compliant e-mails.</li>
-<li>Read our <a href="/memoryhole/guidance">guidance for implementors</a> for
-UI/UX, deployment and configuration considerations.</li>
-</ul>
 
-<p>Development of the Memory Hole project takes place on
-<a href="https://github.com/ModernPGP/memoryhole">GitHub</a>.</p> 
+<li>
+
+<a href="#A">
+      A:
+alternative text/html message with embedded header, signed 
+
+    </a>
+  </li>
+<li>
+
+<a href="#B">
+      B:
+alternative text/html message with embedded header, unsigned 
+
+    </a>
+  </li>
+<li>
+
+<a href="#C">
+      C:
+alternative text/html message with embedded header, signed, with Subject tampered 
+
+    </a>
+  </li>
+<li>
+
+<a href="#D">
+      D:
+alternative text/html message with embedded header, encrypted+unsigned 
+
+    </a>
+  </li>
+<li>
+
+<a href="#E">
+      E:
+alternative text/html message with embedded header, encrypted+signed 
+
+    </a>
+  </li>
+<li>
+
+<a href="#F">
+      F:
+headers in top-level MIME object: signed plaintext email 
+
+    </a>
+  </li>
+<li>
+
+<a href="#G">
+      G:
+headers in top-level MIME object: signed multipart email 
+
+    </a>
+  </li>
+<li>
+
+<a href="#H">
+      H:
+headers in top-level MIME: tampered subject and from 
+
+    </a>
+  </li>
+
+</ul> 
   </body>
 </html>

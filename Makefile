@@ -11,7 +11,7 @@ CSS=$(wildcard assets/*.css)
 
 MBOX_DATE = 2015-01-01 00:00:00-0000
 
-TARGETS = index.html
+TARGETS = index.html corpus/index.html
 
 default: $(TARGETS)
 
@@ -35,11 +35,16 @@ clean:
 	-rm -rf $(GNUPGHOME)
 
 %.html: %.md $(CSS) header.sh footer.sh
+	@echo Generating $@
 	@echo -e               \
 	"`./header.sh $<`"     \
 	"`markdown $<`"        \
 	"`./footer.sh`"        \
 	> $@
+
+corpus/index.md: corpus/gen_page.rb $(EMAILS)
+	@echo Generating $@
+	@$< > $@
 
 
 .PHONY: default clean maildir

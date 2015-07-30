@@ -1,3 +1,5 @@
 *~
 generators/output
 inboxes
+corpus/*.eml
+corpus/*.desc
