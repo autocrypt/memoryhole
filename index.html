@@ -1,1 +1,88 @@
-Hello, world!
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Memory Hole: Protected E-mail Headers">
+    <meta name="robots" content="noimageindex">
+    <meta name="googlebot" content="noimageindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Memory Hole</title>
+    <style>
+      @font-face{font-family: signika; src: url(/memoryhole/assets/signika.ttf); }
+      @font-face{font-family: inconsolata; src: url(/memoryhole/assets/inconsolata.otf); }
+      @font-face{font-family: montserrat; src: url(/memoryhole/assets/Montserrat-Regular.ttf); }
+      @font-face{font-family: montserrat-bold; src: url(/memoryhole/assets/Montserrat-Bold.ttf); }
+      body {background: #fdf6e3; color: #657b83; font-family: montserrat; font-size: 12pt; }
+      a{padding: 0.1em; border-radius: 0.5em; }
+      a:link{color: #6c71c4; }
+      a:visited{color: #d33682; border-radius: 0.5em; text-decoration: none; }
+      a:visited:hover{background-color: #6c71c4; text-decoration: none; background-color: #d33682; }
+      a:hover{text-decoration: none; background-color: #6c71c4; color: #fdf6e3; }
+      a:active{text-decoration: none; background-color: #859900; color: #fdf6e3; }
+      a:visited:active{text-decoration: none; background-color: #859900; color: #fdf6e3; }
+      h1 {font-size: 30pt; font-weight: normal; line-height: 30pt; letter-spacing: -0.01em; text-align: center; color: #586e75; font-family: signika; }
+      h2 {font-size: 14pt; font-weight: normal; line-height: 14pt; text-align: left; color: #586e75; margin-top: 30px; margin-bottom: -10px; font-family: montserrat-bold; }
+      h3 {font-size: 12pt; font-weight: normal; line-height: 12pt; text-align: left; color: #586e75; margin-top: 30px; margin-bottom: -10px; font-family: montserrat-bold; }
+      ul, ol {margin-left: 0em; padding-left: 0em; }
+      ul li {list-style-type: square; margin-left: 1em; list-style: circle; }
+      code{font-family: inconsolata; font-size: 14pt; }
+      pre code{border: 1pt solid #657b83; border-radius: 0.5em; padding: 0.5em 0.5em 0.5em 1.5em; background-color: #eee8d5; color: #586e75; max-height: 20em; overflow: scroll; overflow-x: hidden; font-family: inconsolata; }
+      hr{border: none; border-radius: 20px; background-color: #657b83; height: 2px; }
+      .subtitle {font-size: 16pt; font-weight: normal; line-height: 20pt; margin-top: -25px; letter-spacing: -0.01em; text-align: center; color: #586e75; }
+      ul#navigation-ul {text-align: center; padding-left: 0px; margin-bottom: 0px; margin-top: 0px; }
+      ul#navigation-ul li {display: inline; margin-left: 1.2em; margin-right: 1.2em; }
+      @media (min-width:  641px){
+        body{width: 640px; margin-left: auto; margin-right: auto; }
+        pre code {width: 640px; margin-left: 50px; }
+      }
+      @media (max-width: 640px){
+        body {margin-left: 5px; margin-right: 5px; text-align: justify; }
+        pre code {margin-left: 5px; margin-right: 5px; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Memory Hole</h1>
+    <h1 class="subtitle">Protected E-Mail Headers.</h1>
+    <hr />
+    <ul id="navigation-ul">
+      <li>
+        <a href="/memoryhole/">About</a>
+      </li>
+      <li>
+        <a href="/memoryhole/corpus">Examples</a>
+      </li>
+      <li>
+        <a href="/memoryhole/specification">Specification</a>
+      </li>
+      <li>
+        <a href="/memoryhole/guidance">Guidance</a>
+      </li>
+    </ul>
+    <hr /> <p>Encrypted or signed e-mail does not have cryptographic protection of
+headers; only the body of an e-mail message is encrypted or signed.</p>
+
+<p>The Memory Hole project aims to fix this problem by stashing relevant
+headers within the body of the e-mail in a standardized way.
+Compatible mail user agents should be able to use this structure to
+display the cryptographically protected headers to the user,
+indicating their protection.</p>
+
+<h3>Resources:</h3>
+
+<ul>
+<li>View a list of <a href="/memoryhole/corpus">example Memory Hole-compliant
+e-mails</a> to get an idea of how such emails are
+structured. Our examples come with screenshots, so that you can see
+how they look in various mail user agents.</li>
+<li>Read our <a href="/memoryhole/spec">draft of an IETF standard</a> explaining
+how to structure and interpret Memory Hole-compliant e-mails.</li>
+<li>Read our <a href="/memoryhole/guidance">guidance for implementors</a> for
+UI/UX, deployment and configuration considerations.</li>
+</ul>
+
+<p>Development of the Memory Hole project takes place on
+<a href="https://github.com/ModernPGP/memoryhole">GitHub</a>.</p> 
+  </body>
+</html>
