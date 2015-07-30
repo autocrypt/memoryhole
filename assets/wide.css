@@ -4,7 +4,10 @@ body{
   margin-right: auto;
 }
 
-pre code {
-  width: 640px;
-  margin-left: 50px;
+pre {
+  width: 95%;
+}
+
+.code-block {
+  width: 95%;
 }

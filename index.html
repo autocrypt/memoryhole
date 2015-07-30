@@ -27,15 +27,19 @@ Memory Hole Examples</title>
       h3 {font-size: 12pt; font-weight: normal; line-height: 12pt; text-align: left; color: #586e75; margin-top: 30px; margin-bottom: -10px; font-family: montserrat-bold; }
       ul, ol {margin-left: 0em; padding-left: 0em; }
       ul li {list-style-type: square; margin-left: 1em; list-style: circle; }
-      code{font-family: inconsolata; font-size: 14pt; }
-      pre code{border: 1pt solid #657b83; border-radius: 0.5em; padding: 0.5em 0.5em 0.5em 1.5em; background-color: #eee8d5; color: #586e75; max-height: 20em; overflow: scroll; overflow-x: hidden; font-family: inconsolata; }
+      code{font-family: inconsolata monospace; font-size: 12pt; }
+      pre code{border: 1pt solid #657b83; border-radius: 0.5em; padding: 0.5em 0.5em 0.5em 1.5em; background-color: #eee8d5; color: #586e75; max-height: 20em; overflow: scroll; overflow-x: hidden; display: block; font-family: inconsolata monospace;   font-size: 12px}
+      pre {display: block;   font-size: 12px}
+      .code-block {border: 1pt solid #657b83; border-radius: 0.5em; padding: 0.5em 0.5em 0.5em 1.5em; background-color: #eee8d5; color: #586e75; max-height: 20em; overflow: scroll; overflow-x: hidden; display: block; font-family: inconsolata monospace; white-space: pre; }
+      .mail-example {margin-top: 60px; }
       hr{border: none; border-radius: 20px; background-color: #657b83; height: 2px; }
       .subtitle {font-size: 16pt; font-weight: normal; line-height: 20pt; margin-top: -25px; letter-spacing: -0.01em; text-align: center; color: #586e75; }
       ul#navigation-ul {text-align: center; padding-left: 0px; margin-bottom: 0px; margin-top: 0px; }
       ul#navigation-ul li {display: inline; margin-left: 1.2em; margin-right: 1.2em; }
       @media (min-width:  641px){
         body{width: 640px; margin-left: auto; margin-right: auto; }
-        pre code {width: 640px; margin-left: 50px; }
+        pre {width: 95%; }
+        .code-block {width: 95%; }
       }
       @media (max-width: 640px){
         body {margin-left: 5px; margin-right: 5px; text-align: justify; }
