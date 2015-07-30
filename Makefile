@@ -18,9 +18,8 @@ corpus/%.eml: generators/%.py $(GNUPGHOME) generators/generator.py
 	$<
 
 inboxes/maildir/cur/%.eml: corpus/%.eml
-	@echo Copying $(notdir $<) to maildir
-	@mkdir -p inboxes/maildir/{cur,new,tmp}
-	@cp $< $@
+	@mkdir -p $(foreach dir,new cur tmp,inboxes/maildir/$(dir))
+	cp $< $@
 
 inboxes/mbox: $(EMAILS)
 	for x in $^; do echo 'From - $(MBOX_DATE)'; cat "$$x"; echo "" ; done >$@
