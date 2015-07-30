@@ -122,7 +122,8 @@ pre code{
 
 pre {
   display: block;
-  font-size: 12px
+  font-size: 12px;
+  font-family: inconsolata monospace;
 }
 
 .code-block {
