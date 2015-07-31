@@ -8,7 +8,6 @@ Content-Type: multipart/signed; micalg="pgp-sha256";
  protocol="application/pgp-signature"; boundary="bbbbbbbbbbbb"
 
 --bbbbbbbbbbbb
-MIME-Version: 1.0
 Content-Type: text/plain; boundary="aaaaaaaaaaaa"
 Subject: headers in top-level MIME object: signed plaintext email
 From: Winston <winston@example.net>
@@ -18,18 +17,17 @@ top-level MIME object. The signed Subject and From are headers of the
 text/plain part, rather than having their own rfc822-headers part.
 
 --bbbbbbbbbbbb
-MIME-Version: 1.0
 Content-Type: application/pgp-signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEcBAABCAAGBQJVuN70AAoJEBX7TryOLWy38FEIAIlHLFjGb1FVszIfYBilu+OK
-j63VQ72kDue8B9IOYzEETfIWCb6U+17wzGcvRJWP5NDsovpIA+p7Gq9GTWylAohQ
-UoT//QdjsQ7EcsH3ZdYKzYL/KvBHqDg2CosUAGh5KE0Ecfm2jZMx2Rk0B0tLbDOS
-zSRor4AHefpDVsVEcmel3vwwESCHjrrhFQ8aTosmjO2Pw9jyQcApZKTXiE1WgxHs
-uJ5RpMAFAJcNk7pm6d8oqJ9ADli76iGtEvN/tI4DsPljRhXV1EAiiLOe/PKQIbBW
-RctCZl+WmF+9k9L18SkGM7ZzKd4vQUE8TzMALFnSD4AEsBoC1AmGDAhuLE0/zUI=
-=BTde
+iQEcBAABCAAGBQJVu4XJAAoJEBX7TryOLWy3+gcH/3L0E3ELYYIT2zfGlHubtHpc
+Z9OhbQVCCJTYCNRQ/lAJulUZK5YJEXQaTiTxYpRBo8/wzZyRCx3TDfF8VjbnsRGE
+waCmBOfXjcswuv3kdqVLb73rOi7stqRYCCBSpQbaLRgq4xysX+nwXo+sLZhcrfdz
+pTx0gBIag8V5zFEEA+EdHVKBeNPPgfnxw3wuc3EN+/PXpYirSnL6BcStapS1IJ2X
+89IwNs97VkLPIyrBe8HLwooxL/eWmcZhRYwZonKli50tVGUqRK/DuAae1V/N9gl+
+G0dD8Bw435GjFAS4d1y90LlqG2G59YCbMzKx78kOlUCxcAOOSwKwA8VCBKwJs9A=
+=xd1F
 -----END PGP SIGNATURE-----
 
 --bbbbbbbbbbbb--

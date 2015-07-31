@@ -1,5 +1,5 @@
 alternative text/html message with embedded header, encrypted+signed 
 
-└┬╴multipart/encrypted 3069 bytes
+└┬╴multipart/encrypted 2903 bytes (Subject: Memory Hole Encrypted Message)
  ├─╴application/pgp-encrypted 10 bytes
- └─╴application/octet-stream 2601 bytes
+ └─╴application/octet-stream 2471 bytes

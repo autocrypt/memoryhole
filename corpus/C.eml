@@ -8,11 +8,9 @@ Content-Type: multipart/signed; micalg="pgp-sha256";
  protocol="application/pgp-signature"; boundary="cccccccccccc"
 
 --cccccccccccc
-MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary="bbbbbbbbbbbb"
 
 --bbbbbbbbbbbb
-MIME-Version: 1.0
 Content-Type: text/rfc822-headers
 Content-Disposition: attachment
 
@@ -23,11 +21,9 @@ To: Julia <julia@example.org>
 Message-ID: C@memoryhole.example
 
 --bbbbbbbbbbbb
-MIME-Version: 1.0
 Content-Type: multipart/alternative; boundary="aaaaaaaaaaaa"
 
 --aaaaaaaaaaaa
-MIME-Version: 1.0
 Content-Type: text/plain
 
 This is a test
@@ -38,7 +34,6 @@ with a silly bit more.
 and a .sig here.
 
 --aaaaaaaaaaaa
-MIME-Version: 1.0
 Content-Type: text/html
 
 <html>
@@ -58,18 +53,17 @@ Content-Type: text/html
 --bbbbbbbbbbbb--
 
 --cccccccccccc
-MIME-Version: 1.0
 Content-Type: application/pgp-signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEcBAABCAAGBQJVt/DkAAoJEBX7TryOLWy33LEH/jPLbaxnlJhvTBt66umGjXHg
-f+fi6vnG8lV4UsqJmj8RkZpNXkL3n+nCRAKAnAQwzMFep1VaFe8jLBHwQETpTHc4
-L67npH3UFySpQ2IYO5K5NmHX9a9fLLiveHJTjVko/hwNm+SibW5YvBbJlk8snRjM
-Isw5yWhc5bUpr7Dj/6j3xjLTKx/vaLExbHu6Q72eLqavazJG6devacRp5yurrCXB
-m5mSmvSF/pIgyN/+EI2ALw4CpmTNT2vzxG9WCqPr/gLS6S8fCd+BzOULpC5lOYIN
-vPqYZZbXbM2b8E1DldjOURbcDsfAImKmboz3e0ZRo1MeZNJmg1rJXsfuPM42jyo=
-=mxAW
+iQEcBAABCAAGBQJVu4XJAAoJEBX7TryOLWy3EjoH/33+dnjeucFvDvxbFqqHiPZk
+trEAdmS1N4snLdackoRBEE4YpgPA87IU769Zrjp2HLZ5nDCYygXePUr9LR+dXpSj
+3kMpq4nv9mj865JvcWNnxMAq2jHtNNClk0elO8QvzyFYMz4ELuhN90mceu7RVO/+
+AdVTX8/tN1J4zyG6+2XjxRbZzbBj0cg9VC0KUWabDIKOeYBr3Qif3ac7oymmP86o
+MT+j/zI/x6EJ50yInhxC8BAdl4R93Wm6E6GXRn4QFVooHPMOhFoca3qXGyIqf/1W
+gbd1FqkWJfu8RcDOyR3WxH3whqf0o9yMTgE+jS8FymLwEEFdhm5SbHZvi/QSuNY=
+=wul+
 -----END PGP SIGNATURE-----
 
 --cccccccccccc--

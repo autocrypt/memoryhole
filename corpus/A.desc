@@ -1,9 +1,9 @@
 alternative text/html message with embedded header, signed 
 
-└┬╴multipart/signed 1819 bytes
- ├┬╴multipart/mixed 917 bytes
+└┬╴multipart/signed 1711 bytes (Subject: alternative text/html message with embedded header, signed)
+ ├┬╴multipart/mixed 827 bytes
  │├─╴text/rfc822-headers attachment 205 bytes
- │└┬╴multipart/alternative 504 bytes
+ │└┬╴multipart/alternative 450 bytes
  │ ├─╴text/plain 86 bytes
  │ └─╴text/html 202 bytes
  └─╴application/pgp-signature 455 bytes

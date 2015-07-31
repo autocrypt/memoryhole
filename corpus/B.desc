@@ -1,7 +1,7 @@
 alternative text/html message with embedded header, unsigned 
 
-└┬╴multipart/mixed 1126 bytes
+└┬╴multipart/mixed 1036 bytes (Subject: alternative text/html message with embedded header, unsigned)
  ├─╴text/rfc822-headers attachment 207 bytes
- └┬╴multipart/alternative 504 bytes
+ └┬╴multipart/alternative 450 bytes
   ├─╴text/plain 86 bytes
   └─╴text/html 202 bytes

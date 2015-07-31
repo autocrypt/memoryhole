@@ -1,9 +1,9 @@
 alternative text/html message with embedded header, signed, with Subject tampered 
 
-└┬╴multipart/signed 1814 bytes
- ├┬╴multipart/mixed 940 bytes
+└┬╴multipart/signed 1706 bytes (Subject: the subject has been tampered!)
+ ├┬╴multipart/mixed 850 bytes
  │├─╴text/rfc822-headers attachment 228 bytes
- │└┬╴multipart/alternative 504 bytes
+ │└┬╴multipart/alternative 450 bytes
  │ ├─╴text/plain 86 bytes
  │ └─╴text/html 202 bytes
  └─╴application/pgp-signature 455 bytes

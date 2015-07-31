@@ -8,13 +8,11 @@ Content-Type: multipart/signed; micalg="pgp-sha256";
  protocol="application/pgp-signature"; boundary="bbbbbbbbbbbb"
 
 --bbbbbbbbbbbb
-MIME-Version: 1.0
 Content-Type: multipart/alternative; boundary="aaaaaaaaaaaa"
 Subject: headers in top-level MIME object: signed multipart email
 From: Winston <winston@example.net>
 
 --aaaaaaaaaaaa
-MIME-Version: 1.0
 Content-Type: text/plain
 
 This message demonstrates including the memoryhole headers inside the
@@ -23,7 +21,6 @@ multipart/alternative part, rather than having their own
 rfc822-headers part.
 
 --aaaaaaaaaaaa
-MIME-Version: 1.0
 Content-Type: text/html
 
 <html>
@@ -41,18 +38,17 @@ Content-Type: text/html
 --aaaaaaaaaaaa--
 
 --bbbbbbbbbbbb
-MIME-Version: 1.0
 Content-Type: application/pgp-signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEcBAABCAAGBQJVuKHQAAoJEBX7TryOLWy3u4EH/i/X51ydnUNU2TWZyVkQCXoq
-nF/TO2X7fwyvnaH0+Hxd67sswErwH8oijTGJ7RaGeV8rfCQbk7tZsoWi4SxAfxV+
-Kprt2GImqtbm1MHlR0bbHLm9fXB/Sm0LZMSqOxsm4SsKcBGGljBUmubydhUBL6ei
-/nDGB1adhg8HYsSgvhbqIsi6ElQkp75GdIoG3FvQgTVEuD8mZSMs5LDpuV/br0wc
-bc133d9SCYfxCxnx7MkzScr0zTh9ReKgGvTirlJWXKbbUjwsePkVfLfAnyVRoy7w
-qPfDnnF196urRcKnJbqMPEklzDx4wMf1jCqyriXEjuFHCEHEI2GWJm/7wUQfjKk=
-=/k9W
+iQEcBAABCAAGBQJVu4XKAAoJEBX7TryOLWy3YswIAInhFQaDVAYIZqFuQNZOe2N7
+rLJS4322o+I/nLVcnyyPCEvrH9iHqpbH1WZSotJPOOBXRMzuIi4sSyNka1nQtIJv
+hV8TI9yiVzsb1vDy/uq0tibuygcq1bK0sycO29HihKXoG+sKfV6vJ82yHybS5dNS
+XFJuIHfBvi09YQ5XQ8DBhOe3Erzy7WH0hotbaVv0OJ2ouWskRhyXvVpnuAedcEzk
+K1pb68JtQzS/9NaiFg9+/zysr9ThO8tEDKDE4LN3VYr9vH6Uta2tXk65UhaCIUp5
++CaCT5xRPe3cFoI+J/A8fRAzfTinfW4KLeCQTW2h/I3KXsTYKVlxeCqLuSKcf/s=
+=jzuI
 -----END PGP SIGNATURE-----
 
 --bbbbbbbbbbbb--
