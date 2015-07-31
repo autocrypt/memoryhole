@@ -74,10 +74,15 @@ def render_mime_structure(z, prefix='└', stream=sys.stdout):
         for d in disp:
             if d[0] in [ 'attachment', 'inline' ]:
                 disposition = ' ' + d[0]
+
+    if 'subject' in z:
+        subject = ' (Subject: %s)' % z['subject']
+    else:
+        subject = ''
     if (z.is_multipart()):
         print(prefix + '┬╴' + z.get_content_type() + cset +
                 disposition + fname, z.as_string().__len__().__str__()
-                + ' bytes', file=stream)
+                + ' bytes' + subject, file=stream)
         if prefix.endswith('└'):
             prefix = prefix.rpartition('└')[0] + ' '
         if prefix.endswith('├'):
@@ -91,7 +96,8 @@ def render_mime_structure(z, prefix='└', stream=sys.stdout):
         # FIXME: show epilogue?
     else:
         print(prefix + '─╴'+ z.get_content_type() + cset + disposition
-                + fname, z.get_payload().__len__().__str__(), 'bytes', file=stream)
+                + fname, z.get_payload().__len__().__str__(),
+                'bytes' + subject, file=stream)
 
 
 class Generator(email.message.Message):
