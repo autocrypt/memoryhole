@@ -13,6 +13,11 @@ indicating their protection.
 Messages composed using either PGP/MIME or S/MIME should be able to
 use Memory Hole to add cryptographic protection for mail headers.
 
+Memory Hole works by copying the normal message headers into the MIME
+part headers.  Since the MIME part headers are themselves covered by
+the protection mechanisms (signing or encryption) they share the
+protections of the message body.
+
 Things in this repository
 -------------------------
 
@@ -47,25 +52,6 @@ history/ -- Documents showing early development and documentation of
 Alternatives Considered
 -----------------------
 
-### use the existing MIME headers in the top-most inner part
-
-Concern: we cannot expect legacy OpenPGP-compatible clients to display
-these headers during decryption, which means a Subject: line might get
-lost.
-
-Advantage: This is symmetric to the behavior of most MUAs
-w.r.t. Content-Type: -- after decryption, they treat the message as
-the embedded Content-Type, not the external Content-Type.
-
-Advantage: there is no doubt about the position/placement of the
-headers (you don't need to worry that there will be another
-text/rfc822-header sub-part which causes ambiguity).
-
-TODO: ensure that RFC3156 (and the equivalent RFC for S/MIME) doesn't
-forbid this approach.
-
-Examples: see {F,G,H}.eml in the `corpus` directory.
-
 ### wrap the whole message as an message/rfc822 sub-part
 
 This is how S/MIME specifies protected headers should be done.
@@ -73,3 +59,32 @@ unfortunately, this is also how forwarded mail is represented, and
 most MUAs present it as such (see [Alexey Melnikov's proposed draft
 for an improvement over this
 strategy](https://tools.ietf.org/html/draft-melnikov-smime-header-signing-02)).
+
+### only use embedded text/rfc822-headers parts
+
+This was the original memoryhole approach.  It has a few downsides
+compared with the current MIME part header block approach:
+
+* introduces an additional change in the MIME structure of the message
+  being protected
+
+* for non-memoryhole-aware MUAs, it produces an extra attachment that
+  the user is exposed to.  MUAs that render signatures as attachment
+  objects already confuse recipients, and this would make that
+  confusion worse.
+
+* embedded headers protected by encryption that we want to be visible
+  to the recipient present an extra challenge -- we need an additional
+  embedded header part with different Content-Disposition: to make
+  that work.
+
+### embedded headers associated by tagging instead of structure
+
+The current memoryhole proposal identifies the headers by virtue of
+their placement within the MIME structure of the message.  An
+alternate approach is to try to associate the headers with the message
+based on tagging (e.g. by Message-ID) or by some sort of shared
+identifiers.
+
+This approach is risky because it makes interpretation of the
+protected material dependent on unprotected context.
