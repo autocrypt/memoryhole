@@ -45,6 +45,3 @@ clean:
 corpus/index.md: corpus/gen_page.rb $(EMAILS)
 	@echo Generating $@
 	@$< > $@
-
-
-.PHONY: default clean maildir
