@@ -2,6 +2,8 @@ GENERATORS = $(sort $(wildcard generators/?.py))
 
 EMAILS = $(patsubst generators/%.py,corpus/%.eml,$(GENERATORS))
 
+GNUPGHOME=corpus/OpenPGP/GNUPGHOME
+
 MAILDIR_MAILS = $(patsubst corpus/%.eml,\
                            inboxes/maildir/cur/%.eml,\
                            $(EMAILS))
@@ -9,29 +11,28 @@ MAILDIR_MAILS = $(patsubst corpus/%.eml,\
 CSS=$(wildcard assets/*.css)
 
 
-MBOX_DATE = 2015-01-01 00:00:00-0000
+MBOX_DATE = Thu Jan  1 00:00:00 2015
 
 TARGETS = index.html corpus/index.html guidance/index.html
 
 default: $(TARGETS)
 
 corpus/%.eml: generators/%.py $(GNUPGHOME) generators/generator.py
-	$(GNUPGHOME) $<
+	$<
 
 inboxes/maildir/cur/%.eml: corpus/%.eml
-	@echo Copying $(notdir $<) to maildir
-	@mkdir -p inboxes/maildir/{cur,new,tmp}
-	@cp $< $@
+	@mkdir -p $(foreach dir,new cur tmp,inboxes/maildir/$(dir))
+	cp $< $@
 
 inboxes/mbox: $(EMAILS)
-	for x in $^; do echo 'From - $(MBOX_DATE)'; cat "$$x"; echo "" ; done >$@
+	for x in $^; do echo 'From memoryhole  $(MBOX_DATE)'; cat "$$x"; echo "" ; done >$@
 
 $(GNUPGHOME):
 	@echo Generating $@
 	@cd $(dir $@) && ./gnupg-import
 
 clean:
-	-rm -rf $(MAILDIR_MAILS)
+	-rm -rf $(MAILDIR_MAILS) inboxes/mbox
 	-rm -rf $(GNUPGHOME)
 
 %.html: %.md $(CSS) header.sh footer.sh

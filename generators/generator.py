@@ -42,12 +42,14 @@ def gen_text_plain(generator=None):
         t.set_payload(generator.extended_description)
     else:
         t.set_payload(data['txt'])
+    del t['MIME-Version']
     return t
 
 def gen_text_html():
     h = email.message.Message()
     h.set_type('text/html')
     h.set_payload(data['html'])
+    del h['MIME-Version']
     return h
 
 def gen_multipart_alternative(generator=None):
@@ -55,6 +57,7 @@ def gen_multipart_alternative(generator=None):
     s.set_type('multipart/alternative')
     s.set_boundary(gen_boundary())
     s.set_payload([gen_text_plain(generator),gen_text_html()])
+    del s['MIME-Version']
     return s
 
 
@@ -71,10 +74,15 @@ def render_mime_structure(z, prefix='└', stream=sys.stdout):
         for d in disp:
             if d[0] in [ 'attachment', 'inline' ]:
                 disposition = ' ' + d[0]
+
+    if 'subject' in z:
+        subject = ' (Subject: %s)' % z['subject']
+    else:
+        subject = ''
     if (z.is_multipart()):
         print(prefix + '┬╴' + z.get_content_type() + cset +
                 disposition + fname, z.as_string().__len__().__str__()
-                + ' bytes', file=stream)
+                + ' bytes' + subject, file=stream)
         if prefix.endswith('└'):
             prefix = prefix.rpartition('└')[0] + ' '
         if prefix.endswith('├'):
@@ -88,7 +96,8 @@ def render_mime_structure(z, prefix='└', stream=sys.stdout):
         # FIXME: show epilogue?
     else:
         print(prefix + '─╴'+ z.get_content_type() + cset + disposition
-                + fname, z.get_payload().__len__().__str__(), 'bytes', file=stream)
+                + fname, z.get_payload().__len__().__str__(),
+                'bytes' + subject, file=stream)
 
 
 class Generator(email.message.Message):
@@ -117,6 +126,7 @@ class Generator(email.message.Message):
         emh.set_type('text/rfc822-headers')
         emh.add_header('Content-Disposition', 'attachment')
         emh.set_payload(self.build_embedded_header())
+        del emh['MIME-Version']
 
         if inself:
             wrapper = self
@@ -126,6 +136,7 @@ class Generator(email.message.Message):
         wrapper.set_boundary(gen_boundary())
 
         wrapper.set_payload([emh,body])
+        del wrapper['MIME-Version']
         return wrapper
 
     def get_password_from(self):
@@ -163,6 +174,7 @@ class Generator(email.message.Message):
         self.set_param('micalg', 'pgp-sha256')
         self.set_param('protocol', 'application/pgp-signature')
         self.set_boundary(gen_boundary())
+        del sig['MIME-Version']
 
         self.set_payload([body,sig])
 
@@ -172,6 +184,7 @@ class Generator(email.message.Message):
                 '--homedir=corpus/OpenPGP/GNUPGHOME',
                 '--no-emit-version',
                 '--armor',
+                '--compress-algo', 'none',
                 '--digest-algo=sha256']
         for f in ['To', 'Cc', 'From']:
             n = self.get_all(f)
@@ -199,10 +212,12 @@ class Generator(email.message.Message):
         enc = email.message.Message()
         enc.set_type('application/pgp-encrypted')
         enc.set_payload('Version: 1')
+        del enc['MIME-Version']
 
         data = email.message.Message()
         data.set_type('application/octet-stream')
         data.set_payload(sout)
+        del data['MIME-Version']
 
         self.set_type('multipart/encrypted')
         self.set_param('protocol', 'application/pgp-encrypted')
