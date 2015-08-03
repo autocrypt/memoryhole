@@ -13,7 +13,7 @@ CSS=$(wildcard assets/*.css)
 
 MBOX_DATE = Thu Jan  1 00:00:00 2015
 
-TARGETS = index.html corpus/index.html guidance/index.html
+TARGETS = index.html corpus/index.html guidance/index.html specs/index.html
 
 default: $(TARGETS)
 
@@ -46,3 +46,7 @@ clean:
 corpus/index.md: corpus/gen_page.rb $(EMAILS)
 	@echo Generating $@
 	@$< > $@
+
+specs/index.html:
+	@echo generating specs
+	@cd specs && make

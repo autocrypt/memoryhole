@@ -8,7 +8,7 @@ DRAFTS = memoryhole
 OUTPUTS = $(foreach draft,$(DRAFTS),draft-${draft}.html draft-${draft}.xml draft-${draft}.txt)
 STAGING = staging.xml
 
-all: $(OUTPUTS)
+all: $(OUTPUTS) index.html
 
 clean:
 	rm -f $(OUTPUTS) *.$(STAGING)
@@ -22,5 +22,9 @@ draft-%.xml: draft-%.md
 
 draft-%.txt: draft-%.xml
 	xml2rfc $< --text
+
+index.html: draft-$(DRAFTS).html
+	@echo Copying draft to index
+	@cp $< $@
 
 .PHONY: all clean

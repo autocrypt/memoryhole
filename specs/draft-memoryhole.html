@@ -378,15 +378,19 @@
 <link href="#rfc.section.2" rel="Chapter" title="2 Terminology"/>
 <link href="#rfc.section.3" rel="Chapter" title="3 Message Structure"/>
 <link href="#rfc.section.3.1" rel="Chapter" title="3.1 Locating an embedded header"/>
-<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Content-Disposition"/>
 <link href="#rfc.section.4" rel="Chapter" title="4 Distinguishing from DSN"/>
 <link href="#rfc.section.5" rel="Chapter" title="5 Consequences for encrypted headers"/>
 <link href="#rfc.section.6" rel="Chapter" title="6 Subject"/>
-<link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations"/>
-<link href="#rfc.section.8" rel="Chapter" title="8 Privacy Considerations"/>
-<link href="#rfc.section.9" rel="Chapter" title="9 IANA Considerations"/>
-<link href="#rfc.section.10" rel="Chapter" title="10 TODO"/>
-<link href="#rfc.references" rel="Chapter" title="11 Informative References"/>
+<link href="#rfc.section.7" rel="Chapter" title="7 To and Cc"/>
+<link href="#rfc.section.8" rel="Chapter" title="8 From"/>
+<link href="#rfc.section.9" rel="Chapter" title="9 Message-ID"/>
+<link href="#rfc.section.10" rel="Chapter" title="10 In-Reply-To, References"/>
+<link href="#rfc.section.11" rel="Chapter" title="11 Date"/>
+<link href="#rfc.section.12" rel="Chapter" title="12 Security Considerations"/>
+<link href="#rfc.section.13" rel="Chapter" title="13 Privacy Considerations"/>
+<link href="#rfc.section.14" rel="Chapter" title="14 IANA Considerations"/>
+<link href="#rfc.section.15" rel="Chapter" title="15 TODO"/>
+<link href="#rfc.references" rel="Chapter" title="16 Informative References"/>
 
 
   <meta name="generator" content="xml2rfc version 2.4.7 - http://tools.ietf.org/tools/xml2rfc" />
@@ -394,7 +398,7 @@
 
   <meta name="dct.creator" content="Gillmor, D." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-memoryhole" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-7-30" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-8-03" />
   <meta name="dct.abstract" content="Encrypted or signed e-mail does not have cryptographic protection of headers &#8211; only the body of an e-mail message is encrypted or signed.  This specification provides a solution to this problem by embedding relevant headers within the body of the e-mail in a well-structured way." />
   <meta name="description" content="Encrypted or signed e-mail does not have cryptographic protection of headers &#8211; only the body of an e-mail message is encrypted or signed.  This specification provides a solution to this problem by embedding relevant headers within the body of the e-mail in a well-structured way." />
 
@@ -415,10 +419,10 @@
 </tr>
 <tr>
   <td class="left">Intended status: Informational</td>
-  <td class="right">July 30, 2015</td>
+  <td class="right">August 03, 2015</td>
 </tr>
 <tr>
-  <td class="left">Expires: January 31, 2016</td>
+  <td class="left">Expires: February 4, 2016</td>
   <td class="right"></td>
 </tr>
 
@@ -439,7 +443,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on January 31, 2016.</p>
+<p>This Internet-Draft will expire on February 4, 2016.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -455,15 +459,19 @@
 <li>2.   <a href="#rfc.section.2">Terminology</a></li>
 <li>3.   <a href="#rfc.section.3">Message Structure</a></li>
 <li>3.1.   <a href="#rfc.section.3.1">Locating an embedded header</a></li>
-<li>3.2.   <a href="#rfc.section.3.2">Content-Disposition</a></li>
 <li>4.   <a href="#rfc.section.4">Distinguishing from DSN</a></li>
 <li>5.   <a href="#rfc.section.5">Consequences for encrypted headers</a></li>
 <li>6.   <a href="#rfc.section.6">Subject</a></li>
-<li>7.   <a href="#rfc.section.7">Security Considerations</a></li>
-<li>8.   <a href="#rfc.section.8">Privacy Considerations</a></li>
-<li>9.   <a href="#rfc.section.9">IANA Considerations</a></li>
-<li>10.   <a href="#rfc.section.10">TODO</a></li>
-<li>11.   <a href="#rfc.references">Informative References</a></li>
+<li>7.   <a href="#rfc.section.7">To and Cc</a></li>
+<li>8.   <a href="#rfc.section.8">From</a></li>
+<li>9.   <a href="#rfc.section.9">Message-ID</a></li>
+<li>10.   <a href="#rfc.section.10">In-Reply-To, References</a></li>
+<li>11.   <a href="#rfc.section.11">Date</a></li>
+<li>12.   <a href="#rfc.section.12">Security Considerations</a></li>
+<li>13.   <a href="#rfc.section.13">Privacy Considerations</a></li>
+<li>14.   <a href="#rfc.section.14">IANA Considerations</a></li>
+<li>15.   <a href="#rfc.section.15">TODO</a></li>
+<li>16.   <a href="#rfc.references">Informative References</a></li>
 
 
   </ul>
@@ -476,41 +484,73 @@
   <dt>header line</dt>
   <dd style="margin-left: 8">a single header field, like &#8220;Subject: encrypting mail headers&#8221;</dd>
   <dt>header block</dt>
-  <dd style="margin-left: 8">a collection of header lines associated with an e-mail message</dd>
-  <dt>embedded header block</dt>
-  <dd style="margin-left: 8">the text/rfc822-headers MIME subpart located as the first immediate child of an encrypted or signed e-mail message</dd>
-  <dt>embedded header line</dt>
-  <dd style="margin-left: 8">a header line within an embedded header block</dd>
+  <dd style="margin-left: 8">a collection of header lines associated with an e-mail message or MIME part</dd>
+  <dt>protection layer</dt>
+  <dd style="margin-left: 8">a MIME part that wraps an entire MIME subtree with some form of cryptographic protection. application/signed and application/encrypted Content-Types are protection layers.</dd>
+  <dt>protected subtree</dt>
+  <dd style="margin-left: 8">a MIME subtree immediately enclosed by a protection layer</dd>
+  <dt>top protected part</dt>
+  <dd style="margin-left: 8">the root MIME part of a protected subtree</dd>
   <dt>external header block</dt>
-  <dd style="margin-left: 8">the set of header lines located outside the body of an e-mail message</dd>
+  <dd style="margin-left: 8">the collection of header lines located outside the body of an e-mail message</dd>
   <dt>external header line</dt>
   <dd style="margin-left: 8">a header line within an external header block</dd>
+  <dt>MIME part header block</dt>
+  <dd style="margin-left: 8">the collection of header lines assocatied with a MIME part, as distinguished from the content of the MIME part</dd>
+  <dt>MIME part header line</dt>
+  <dd style="margin-left: 8">a header line within a MIME part header block</dd>
+  <dt>displayable header part</dt>
+  <dd style="margin-left: 8">a Content-Type: text/rfc822-headers MIME subpart located as the first child of a multipart/mixed top protected part.  This part has a MIME part header block, and its content is also a header block.  A displayable header part&#8217;s MIME part header block should be Content-Disposition: inline, and its parent&#8217;s MIME part header block should be Content-Type: multipart/mixed and Memory-Hole: displayable</dd>
+  <dt>displayable header line</dt>
+  <dd style="margin-left: 8">a header line in the content of a display header part</dd>
+  <dt>mail user agent (MUA)</dt>
+  <dd style="margin-left: 8">an application designed to receive, render, compose, and send e-mail on behalf of a user</dd>
 </dl>
 <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#message-structure" id="message-structure">Message Structure</a></h1>
+<p id="rfc.section.3.p.1">In order for cryptographic protection of the e-mail body to apply to associated e-mail headers, the relevant e-mail headers must be present within the body of the message.  This section describes how a memoryhole-compatible MUA should inspect the content of a protected message to find the relevant headers.</p>
+<p id="rfc.section.3.p.2">Not all headers for a given message will necessarily be protected, so rendering MUAs should be prepared for circumstances where some headers have different levels of protection than others.  Displaying this distinction to the user is out of scope for this specification (we hope to collect such UI/UX guidance in a companion document).</p>
+<p id="rfc.section.3.p.3">Below we describe the semantic concepts and how to find them from the structure of the message.</p>
+<p/>
+
+<ul>
+  <li>When interpreting and rendering an e-mail message, cryptographically aware MUAs should associate each e-mail header line with a set of cryptographic protections: 0 or more &#8220;encrypted-by&#8230;&#8221; and 0 or more &#8220;signed-by&#8230;&#8221; protection associations per header line.</li>
+  <li>protection association sets have a prioritization hierarchy, from highest to lowest:  <ul><li>a set with both signed-by and encrypted-by associations</li><li>a set with only signed-by associations</li><li>a set with only encrypted-by associations</li><li>an empty set</li></ul></li>
+  <li>within each prioritization category, a set with more associations than another is higher priority than a set with fewer associations.</li>
+  <li>Before cryptographic processing, all header lines have an empty set of protection associations.</li>
+  <li>an e-mail or message part whose Content-Type is a &#8220;message protection type&#8221; (multipart/signed or multipart/encrypted) inherits all header lines (replacing its own lines) from the internal top-level protected MIME part, if the internal header line has a higher-priority set of protection associations than the current header line.  <ul><li>Headers inherited across a verified multipart/signed protection that gain a &#8220;signed-by&#8221; protection association for each verified signature.</li><li>Headers inherited across a successfully-decrypted multipart/encrypted protection gain an &#8220;encrypted-by&#8221; protection association for each key known to effectively decrypt the content.  If the multipart/encrypted protection also includes a cryptographic signature (as in the case of one-shot PGP/MIME), these headers also gain a &#8220;signed-by&#8221; protection association for each verified signature.</li></ul></li>
+  <li>header inheritance chains, so internal headers &#8220;bubble up&#8221; if they are higher priority.</li>
+</ul>
+<p id="rfc.section.3.p.5">TODO: document Force-display (explicit embedded header mime part for compatibility with decryption-capable pre-memoryhole clients) and how it fits into the above breakdown.</p>
 <h1 id="rfc.section.3.1"><a href="#rfc.section.3.1">3.1.</a> <a href="#locating-an-embedded-header" id="locating-an-embedded-header">Locating an embedded header</a></h1>
-<h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> <a href="#content-disposition" id="content-disposition">Content-Disposition</a></h1>
+<p id="rfc.section.3.1.p.1">##</p>
 <h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#distinguishing-from-dsn" id="distinguishing-from-dsn">Distinguishing from DSN</a></h1>
 <p id="rfc.section.4.p.1">see <a href="#RFC6522">[RFC6522]</a></p>
 <h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#consequences-for-encrypted-headers" id="consequences-for-encrypted-headers">Consequences for encrypted headers</a></h1>
 <p id="rfc.section.5.p.1">Some message headers are more privacy/confidentiality sensitive than others.  When a block of headers are embedded in the encrypted body, the corresponding lines in the external header should be stripped or stubbed out, for at least some of the headers.</p>
-<p id="rfc.section.5.p.2">If confidentiality is desired for encrypted headers should be removed and and removing (or replacing with a dummy external ) has</p>
+<p id="rfc.section.5.p.2">If confidentiality is desired for an header line protected in the body of the message by an encryption protection layer, the external header line in question should be removed from the external header block, or possibly replaced with a dummy external header line.  The choice of whether to remove or replace depends on the header line itself.</p>
+<p id="rfc.section.5.p.3">We document the tradeoffs about removing/replacing specific header lines below.</p>
 <h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#subject" id="subject">Subject</a></h1>
-<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
-<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#privacy-considerations" id="privacy-considerations">Privacy Considerations</a></h1>
-<h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a></h1>
+<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#to-and-cc" id="to-and-cc">To and Cc</a></h1>
+<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#from" id="from">From</a></h1>
+<h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> <a href="#message-id" id="message-id">Message-ID</a></h1>
+<h1 id="rfc.section.10"><a href="#rfc.section.10">10.</a> <a href="#in-reply-to-references" id="in-reply-to-references">In-Reply-To, References</a></h1>
+<h1 id="rfc.section.11"><a href="#rfc.section.11">11.</a> <a href="#date" id="date">Date</a></h1>
+<h1 id="rfc.section.12"><a href="#rfc.section.12">12.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
+<h1 id="rfc.section.13"><a href="#rfc.section.13">13.</a> <a href="#privacy-considerations" id="privacy-considerations">Privacy Considerations</a></h1>
+<h1 id="rfc.section.14"><a href="#rfc.section.14">14.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a></h1>
 <p/>
 
 <ul>
   <li>registering any new headers?</li>
 </ul>
-<h1 id="rfc.section.10"><a href="#rfc.section.10">10.</a> <a href="#todo" id="todo">TODO</a></h1>
+<h1 id="rfc.section.15"><a href="#rfc.section.15">15.</a> <a href="#todo" id="todo">TODO</a></h1>
 <p/>
 
 <ul>
   <li>Should we mark this as updating any of the DSN RFCs?</li>
   <li>Acknowledge message/rfc822 wrapping and explain why this is different</li>
 </ul>
-<h1 id="rfc.references"><a href="#rfc.references">11.</a> Informative References</h1>
+<h1 id="rfc.references"><a href="#rfc.references">16.</a> Informative References</h1>
 <table>
   <tbody>
     <tr>
