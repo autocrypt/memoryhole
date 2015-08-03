@@ -11,7 +11,7 @@ CSS=$(wildcard assets/*.css)
 
 MBOX_DATE = 2015-01-01 00:00:00-0000
 
-TARGETS = index.html corpus/index.html
+TARGETS = index.html corpus/index.html guidance/index.html
 
 default: $(TARGETS)
 

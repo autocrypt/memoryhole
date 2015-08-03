@@ -7,9 +7,7 @@
     <meta name="robots" content="noimageindex">
     <meta name="googlebot" content="noimageindex">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Memory Hole
-Memory Hole Examples
-Memory Hole Implementation Guidance</title>
+    <title>Memory Hole Implementation Guidance</title>
     <style>
       @font-face{font-family: signika; src: url(/memoryhole/assets/signika.ttf); }
       @font-face{font-family: liberation-mono; src: url(/memoryhole/assets/liberation_mono.ttf); }
@@ -67,29 +65,38 @@ Memory Hole Implementation Guidance</title>
         <a href="/memoryhole/guidance">Guidance</a>
       </li>
     </ul>
-    <hr /> <p>Encrypted or signed e-mail does not have cryptographic protection of
-headers; only the body of an e-mail message is encrypted or signed.</p>
+    <hr /> <h1>Guidance for Memory Hole Implementors</h1>
 
-<p>The Memory Hole project aims to fix this problem by stashing relevant
-headers within the body of the e-mail in a standardized way.
-Compatible mail user agents should be able to use this structure to
-display the cryptographically protected headers to the user,
-indicating their protection.</p>
-
-<h3>Resources:</h3>
+<h2>Implementation patterns</h2>
 
 <ul>
-<li>View a list of <a href="/memoryhole/corpus">example Memory Hole-compliant
-e-mails</a> to get an idea of how such emails are
-structured. Our examples come with screenshots, so that you can see
-how they look in various mail user agents.</li>
-<li>Read our <a href="/memoryhole/specs">draft of an IETF standard</a> explaining
-how to structure and interpret Memory Hole-compliant e-mails.</li>
-<li>Read our <a href="/memoryhole/guidance">guidance for implementors</a> for
-UI/UX, deployment and configuration considerations.</li>
+<li><p>interpretation/display of protected headers</p></li>
+<li><p>generation of protected headers</p></li>
 </ul>
 
-<p>Development of the Memory Hole project takes place on
-<a href="https://github.com/ModernPGP/memoryhole">GitHub</a>.</p> 
+<h2>UI/UX</h2>
+
+<p>How to distinguish signed headers from unsigned headers?</p>
+
+<p>How to indicate to users that the header lines they see were encrypted
+(and what to do with the unencrypted versions)</p>
+
+<h2>Baseline</h2>
+
+<p>Subject-only</p>
+
+<h2>more sophisticated</h2>
+
+<p>stripping To:/Cc:</p>
+
+<p>stripping From:</p>
+
+<p>stripping Message-Id:</p>
+
+<p>stripping In-Reply-To:, References:, etc</p>
+
+<h2>search/display</h2>
+
+<p>protected lookaside header store for rendering</p> 
   </body>
 </html>
