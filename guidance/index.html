@@ -65,38 +65,136 @@
         <a href="/memoryhole/guidance">Guidance</a>
       </li>
     </ul>
-    <hr /> <h2>Guidance for Memory Hole Implementors</h2>
+    <hr /> <h2>Overview</h2>
 
-<h3>Implementation patterns</h3>
+<p>This document contains information on <em>interpreting</em> and <em>generating</em>
+memory hole compliant e-mails.</p>
+
+<p>Please see the <a href="https://modernpgp.org/memoryhole/specs/#rfc.section.2">specification's
+glossary</a> for
+terms used in this document.</p>
+
+<p><em>Generating</em>: The specification permits MUAs to protect any e-mail
+header. However, implementors should note that encrypting some headers
+may have unexpected consequences. We therefore recommend protecting
+only some headers by default; more details are provided below.</p>
+
+<p><em>Interpreting</em>: while implementors are urged to only protect some
+headers by default, MUAs must be prepared to correctly interpret
+e-mails with any combination of protected headers. Advice on how to
+display memory-hole compliant emails is provided below.</p>
+
+<p>We recommend that MUAs considering Memory Hole should start by adding
+message interpretation, and only enable message generation by default
+after interpretation is known to work properly.</p>
+
+<h2>Interpreting memory-hole compliant e-mails</h2>
 
 <ul>
-<li><p>interpretation/display of protected headers</p></li>
-<li><p>generation of protected headers</p></li>
+<li><p>Which header is ultimately displayed?</p>
+
+<p>Signed &amp; encrypted, then signed, then encrypted, then unprotected</p></li>
 </ul>
 
-<h3>UI/UX</h3>
+<h2>Generating memory-hole compliant emails</h2>
 
-<p>How to distinguish signed headers from unsigned headers?</p>
+<p>We recommend protecting all headers that might be relevant to the
+message.  You can protect a header by including a copy of it in the
+top-level MIME part within the inner-most protection layer.</p>
 
-<p>How to indicate to users that the header lines they see were encrypted
-(and what to do with the unencrypted versions)</p>
+<p>You may also want to obscure (remove or replace with a dummy) some
+headers from the external header if they are protected by an
+encryption layer.  Guidance about obscuring is distinct from guidance
+about inclusion in protection layers.  Initial implementations SHOULD
+obscure Subject: header lines when generating encryptedb mail, and MAY
+obscure other header lines.  See the "Consequences" section below for
+thoughts about other headers.</p>
 
-<h3>Baseline</h3>
+<p>You may also want to make some protected headers explicitly visible to
+users who have MUAs that do not understand Memory Hole.  We call these
+headers "force-displayed".  Selecting specific headers to
+force-display presents a usability tradeoff -- they may appear noisy
+to recipients using legacy MUAs.  memory-hole generating MUAs SHOULD
+force-display the Subject: header, MAY force-display From, To, and Cc
+headers, and SHOULD NOT force-display other headers.</p>
 
-<p>Subject-only</p>
+<h3>Extent of protection</h3>
 
-<h3>more sophisticated</h3>
+<ul>
+<li>Obscured + protected: tamper-proofed within at least one encryption
+layer, and also stripped/stubbed</li>
+<li>Protected: headers are copied into the top-level MIME part of the
+inner-most protection layer</li>
+<li>Ignored</li>
+</ul>
 
-<p>stripping To:/Cc:</p>
+<h3>Message composition</h3>
 
-<p>stripping From:</p>
+<p>All protection layers should be outside all protected parts of the
+message.  Do not interleave protection layers with other MIME parts.
+The Content-Type of a message with any protection layers shoul be a
+protection layer.</p>
 
-<p>stripping Message-Id:</p>
+<p>FIXME: provide good/bad MIME tree examples.</p>
 
-<p>stripping In-Reply-To:, References:, etc</p>
+<h3>Consequences of obscuring specific headers</h3>
 
-<h3>search/display</h3>
+<ul>
+<li><p>Subject:  we think there are no significant negative consequeces to
+obscuring the Subject, and most users naively expect that the Subject
+of encrypted mail should be obscured anyway.</p></li>
+<li><p>From</p></li>
+<li><p>To</p>
 
-<p>protected lookaside header store for rendering</p> 
+<ul>
+<li>Separate emails to separate recipients, or is this issue
+orthogonal?</li>
+</ul></li>
+<li><p>...</p></li>
+</ul>
+
+<h2>UI/UX</h2>
+
+<p>Don't scare users unnecessarily. :) The current situation is that
+users are not notified of tampered headers anyway. Therefore staying
+silent about tampered headers <em>by default</em> does not make anything
+worse.</p>
+
+<p>In the future, there may be clever ways of alerting users to MITM
+attacks with a very low number of false positives:
+* by using a white/blacklist, or
+* by the MUA 'learning' and ignoring emails that are always tampered
+with (mailing lists) and warning about emails that usually are not
+tampered with (personal correspondance)</p>
+
+<p>Thwart attacks where possible, which in this case means undo tampering
+by recovering original content from the protected headers.  Log when
+attacks happen to document patterns of misbehavior for people who want
+more info.  Be cautious about explicit warnings because of "alert
+fatigue".  Provide clean settings (with sensible defaults) to allow
+users to see more warnings/logs if they want.</p>
+
+<h2>Caveats</h2>
+
+<h3>breakage of some legacy systems</h3>
+
+<p>There are some existing mail systems typically modify message headers.
+For example:</p>
+
+<ul>
+<li><p>mailman (mailing lists) modifies the Subject: header lie by
+prefixing it with [listname].</p></li>
+<li><p>RT (request tracker) puts ticket ID numbers in the Subject: header
+line.</p></li>
+</ul>
+
+<p>These systems are in principle indistinguishable from a MiTM that we
+are trying to defend against.  To the extent that Memory Hole defends
+against tampered headers, it is likely to also break the modifications
+made by these systems when those systems process protected mail.</p>
+
+<p>Memory Hole does not try to enable these legacy systems, though there
+may be ways that they can interoperate better than complete breakage.
+if someone working on such a system wants to discuss, please do.</p> 
   </body>
 </html>
