@@ -88,3 +88,29 @@ identifiers.
 
 This approach is risky because it makes interpretation of the
 protected material dependent on unprotected context.
+
+
+Implementations
+---------------
+
+* [pyMemoryHole](https://0xacab.org/leap/pymemoryhole). A generic
+  python library under development.
+* [enigmail](https://www.enigmail.net/) has integrated support for
+  Memory Hole but it's not enabled by default.
+* [r2mail2](https://r2mail2.com/) Memory Hole implementation is
+  mostly finished.
+* [notmuch](https://notmuchmail.org/) Memory Hole for parsing is
+  under development, notmuch doesn't generate emails.
+* [bitmask](https://bitmask.net/) Memory Hole implementation is
+  under development using pyMemoryHole.
+* [gpg4o](https://www.gpg4o.com/) has an implementation of the early
+  draft of memory hole.
+* [mailpile](https://www.mailpile.is/) has some experiments using
+  memoryhole.
+
+
+Workshops
+---------
+
+* [2nd OpenPGP Email Summit, Dec 2015](https://wiki.gnupg.org/HeaderProtectionWithMemoryHole)
+* [3nd OpenPGP Email Summit, Jul 2016](https://wiki.gnupg.org/OpenPGPEmailSummit201607/MemoryHole)
