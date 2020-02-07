@@ -1,3 +1,12 @@
+Archived Content
+================
+
+This repository is an archive of the memory hole protected e-mail headers effort.
+It has been inactive for a few years.
+
+The most recent effort in this field is documented here: https://github.com/autocrypt/protected-headers
+It tracks the Internet Draft documenting shared experience in providing end-to-end cryptographic protection for e-mail headers.
+
 Memory Hole Protected E-mail Headers
 ====================================
 
